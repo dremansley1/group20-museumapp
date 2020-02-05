@@ -1,0 +1,73 @@
+{% extends 'template.html' %}
+
+{% block storeName %}
+{{ store_data.store_name }}
+{% endblock %}
+
+{% block main_content %}
+<section class="bigBanner">
+	</section>
+	<section class="boxContainer">
+		<section class="feature">
+			<section class="iconContainer">
+				<i class="fas fa-truck icon"></i>
+			</section>
+			<section class="featureText">
+				<h4>FAST DELIVERY</h4>
+				<p class="subText">All products are shipped same day when ordered before 4pm. Delivery time is 1 to 2 days.</p>
+			</section>
+		</section>
+
+		<section class="feature">
+			<section class="iconContainer">
+				<i class="fas fa-medal icon fa-lg"></i>
+			</section>
+			<section class="featureText">
+				<h4>HIGH QUALITY</h4>
+				<p class="subText">All our equipment is made from high quality and durable materials. Full refund if you're not satisified.</p>
+			</section>
+		</section>
+		<section class="feature">
+			<section class="iconContainer">
+				<i class="fas fa-lock icon fa-lg"></i>
+			
+			</section>
+			<section class="featureText">
+					<h4>SECURE CHECKOUT</h4>
+				<p class="subText">All payments are sent through a very secure network. Your card information is never stored.</p>
+			</section>
+		</section>
+	</section>
+<section class="productListingContainer">
+	<h3 class="subTitle">
+		Our Products
+	</h3>
+
+<section class="filterRow">
+	<span>SORT BY:</span>
+<form method="POST" action="" name="form">
+<select class="productFilter" name="productFilter" id="filterBy">
+	<option value="n">Alphabetically</option>
+	<option value="phighlow">Price: High - Low</option>
+	<option value="plowhigh">Price: Low - High</option>
+</select>
+
+<input type="submit" value="Filter" class="filterBtn">
+</form>
+    
+</section>
+
+{% for product in product_list %}
+	<section class="product">
+		<img src="static/images/{{ product.product_image }}">
+		 <a href="{{ url_for('product', pro_id = product.id) }}" target="_blank"><h4>{{ product.product_name }}</h4></a>
+		<p class="productPrice">£{{ product.product_price }}</p>
+		<section class="buttons">
+			<a href="/addBasket/{{product.id}}" class="addBasket-btn">Add to Basket</a>
+            <a href="/addWishlist/{{product.id}}" class="addWishlist-btn">Add to wishlist</a>
+		</section>
+		</section>
+{% endfor %}
+
+</section>
+{% endblock %}

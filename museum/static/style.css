@@ -49,3 +49,7 @@ footer .menu-btn .material-icons{
     transform:translate(-100%,0);
     color:#222;
 }
+
+.active{
+    color:#be2edd !important;
+}

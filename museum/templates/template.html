@@ -17,7 +17,7 @@
 
 	{% block header %}
 	<header class="header"> 
-	<h1>Cardiff Museum</h1>
+	<h1>{{ page_name }}</h1>
 	</header>
   
 	{% endblock %}
@@ -34,18 +34,18 @@
 
 {% block footer %}
 	<footer class="footer">
-        <div class="menu-btn">
+        <div class="menu-btn active">
         
-        <i class="material-icons">
+           <a href="{{ url_for('mainpage') }}"><i class="material-icons">
 map
-</i>
+               </i></a>
             Map
              </div>
            <div class="menu-btn">
                     
-        <i class="material-icons">
+        <a href="{{ url_for('search') }}"><i class="material-icons">
 search
-</i>
+            </i></a>
                Search
         </div>
         <div class="menu-btn">
@@ -56,9 +56,9 @@ camera_rear
             Scan
         </div>
              <div class="menu-btn">       
-        <i class="material-icons">
+         <a href="{{ url_for('settings') }}"><i class="material-icons">
 settings
-</i>
+             </i></a>
                  Settings
         </div>
             

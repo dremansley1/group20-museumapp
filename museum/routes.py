@@ -4,14 +4,30 @@ from museum.models import *
 from museum.config import *
 from flask_login import login_user, current_user, logout_user, login_required
 
-@app.route("/", methods=['GET', 'POST'])
-@app.route("/home", methods=['GET', 'POST'])
+#page routing setup
 
-def mainPage():
+@app.route("/", methods=['GET', 'POST'])
+def mainpage():
+    return render_template("index.html", museum_data = museum_info, page_name = "Museum Map");
+
+@app.route("/settings", methods=['GET', 'POST'])
+def settings():
+    return render_template('settings.html', museum_data = museum_info, page_name = "Settings");
     
-    page_name = "Home Page"
-    
-    return render_template("homepage.html", museum_data = museum_info, page_name = page_name);
+@app.route("/search", methods=['GET', 'POST'])
+def search():
+    return render_template('search.html', museum_data = museum_info, page_name = "Search");
+
+@app.route("/artifact", methods=['GET', 'POST'])
+def artifact():
+    return render_template('artifact.html', museum_data = museum_info, page_name = "Artifact");
+
+@app.route("/room_artifacts", methods=['GET', 'POST'])
+def room_artifacts():
+    return render_template('room_artifacts.html', museum_data = museum_info, page_name = "Artifacts");
+
+
+
 
 #@app.route("/login", methods=['GET', 'POST'])
 #def login():

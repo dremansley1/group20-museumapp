@@ -3,9 +3,12 @@
 <head>
 
 {% block museum_metadata %}
-<title>{{ self.MuseumName() }} - {{ page_name }}</title>
+<title>{{ museum_data.museum_name }} - {{ page_name }}</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
 
 {% endblock %}
 
@@ -14,7 +17,7 @@
 
 	{% block header %}
 	<header class="header"> 
-	
+	<h1>Cardiff Museum</h1>
 	</header>
   
 	{% endblock %}
@@ -31,7 +34,35 @@
 
 {% block footer %}
 	<footer class="footer">
-		&copy Copyright 2020
+        <div class="menu-btn">
+        
+        <i class="material-icons">
+map
+</i>
+            Map
+             </div>
+           <div class="menu-btn">
+                    
+        <i class="material-icons">
+search
+</i>
+               Search
+        </div>
+        <div class="menu-btn">
+                    
+        <i class="material-icons">
+camera_rear
+</i>
+            Scan
+        </div>
+             <div class="menu-btn">       
+        <i class="material-icons">
+settings
+</i>
+                 Settings
+        </div>
+            
+       
 	</footer>
 	{% endblock %}
 

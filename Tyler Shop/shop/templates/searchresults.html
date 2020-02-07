@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Search Results</h1>
+</br>
+ 
+
+<a href="{{ url_for('item', item_id=item.id) }}">
+  <img class = "ItemImage" src = "{{ url_for('static', filename='img/' + item.image_file) }}"  style="float: left; margin: 4px 10px 0px 0px; border: 1px solid #000000;"> </a>
+
+    <b><a href="{{ url_for('item', item_id=item.id) }}" class="itemName"> <p>{{ item.item_name }}</p> </a></b>
+    <b><p>Price: £{{ item.price }}</p></b>
+    <p>{{ item.description }}</p>
+    <p>Category: {{item.category}} </p>
+    <p>Stock: {{ item.stock_level}} </p>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+
+{% endblock content %}

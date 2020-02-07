@@ -1,0 +1,68 @@
+<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  <title>Tyler's Shop</title>
+</head>
+
+<body>
+  {% if current_user.is_authenticated %}
+    <div id="header">
+
+      <p style="color:white;"> 
+            <a href="{{ url_for('home') }}" class="logo">Tyler's Shop</a>       
+            &nbsp &nbsp|&nbsp &nbsp
+            <a href="{{ url_for('home') }}" class="header">Home</a>       
+            &nbsp &nbsp|&nbsp &nbsp
+            <a href="{{ url_for('about') }}" class="header">About Us</a>        
+            &nbsp &nbsp|&nbsp &nbsp
+            <a href="{{url_for('basket_display')}}" class="header">Your Basket</a>     
+            &nbsp &nbsp|&nbsp &nbsp
+            <a href="{{url_for('wishlist_display')}}" class="header">Your Wishlist</a>     
+            &nbsp &nbsp|&nbsp &nbsp
+            <a href="{{url_for('logout') }}" class="header">Logout</a>  
+            &nbsp &nbsp|&nbsp &nbsp
+            Contact Us: 01223 333 212 
+
+      </p>
+    </div>
+  {%else%}
+    <div id="header">
+        <p style="color:white;"> 
+              <a href="{{ url_for('home') }}" class="logo">Tyler's Shop</a>       
+              &nbsp &nbsp|&nbsp &nbsp
+              <a href="{{ url_for('home') }}" class="header">Home</a>       
+              &nbsp &nbsp|&nbsp &nbsp
+              <a href="{{ url_for('about') }}" class="header">About Us</a>        
+              &nbsp &nbsp|&nbsp &nbsp
+              <a href="{{url_for('login') }}" class="header">Login</a>        
+              &nbsp &nbsp|&nbsp &nbsp
+              <a href="{{url_for('register') }}" class="header">Register</a>        
+              &nbsp &nbsp|&nbsp &nbsp
+              Contact Us: 01223 333 212
+
+        </p>
+      </div>
+  {% endif %}
+
+  <div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </div>
+  
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+</body>
+</html>

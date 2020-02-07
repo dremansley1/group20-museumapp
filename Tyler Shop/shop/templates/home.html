@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Items</h1>
+<p>Search by item name:</p>
+<form method="POST" action="">
+  {{ form.csrf_token }}
+ <!--  {{form.select}} -->
+  {{form.search}}
+  
+
+  
+  <input type="submit" value=" Search">
+
+</form>
+Filter by:
+<a href="{{ url_for('price_high_to_low')}}"  class="itemName"> <p>Price: High to Low</p> </a>
+<a href="{{ url_for('price_low_to_high')}}"  class="itemName"> <p>Price :Low to High</p> </a>
+<a href="{{ url_for('stock_high_to_low')}}"  class="itemName"> <p>Stock: High to Low</p> </a>
+<a href="{{ url_for('stock_low_to_high')}}"  class="itemName"> <p>Stock :Low to High</p> </a>
+
+
+<!-- <select class="form-control" id="categoryfilter" name="Categories">
+    <option value="Video Games" selected>Video Games</option>
+    <option value="Mobile Phones">Mobile Phones</option>
+</select> -->
+    
+</br>
+  {% for item in items %}
+
+<a href="{{ url_for('item', item_id=item.id) }}">
+  <img class = "ItemImage" src = "{{ url_for('static', filename='img/' + item.image_file) }}"  style="float: left; margin: 4px 10px 0px 0px; border: 1px solid #000000;"> </a>
+
+    <b><a href="{{ url_for('item', item_id=item.id) }}" class="itemName"> <p>{{ item.item_name }}</p> </a></b>
+    <b><p>Price: £{{ item.price }}</p></b>
+    <p>{{ item.description }}</p>
+    <p>Category: {{item.category}} </p>
+    <p>Stock: {{ item.stock_level}} </p>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+
+  {% endfor %}
+{% endblock content %}

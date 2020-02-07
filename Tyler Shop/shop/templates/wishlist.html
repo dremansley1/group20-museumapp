@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1> Your Wishlist </h1>
+
+{% for key, value in display_wishlist.items() %}
+<tr>
+	<img class = "basketimage" src = "{{ url_for('static', filename='img/' + value['image']) }}"
+	<td>{{ value["name"] }}	&nbsp&nbsp&nbsp&nbsp</td>
+	<td>Quantity: {{ value["quantity"] }}&nbsp&nbsp&nbsp&nbsp</td>
+	<td>£{{ value["price"] }}&nbsp&nbsp&nbsp&nbsp</td>
+	<td>Total Cost: £{{ (value["quantity"] * value["price"]) }}&nbsp&nbsp&nbsp&nbsp</td>
+	
+
+	<td>
+      <form action="{{ url_for('delete_wishlist_item', item_id=key|int) }}" method="POST">
+      	<input class="" type="submit" value="Remove from Wishlist">
+      </form>
+ 	</td>
+ </tr>
+
+<br/>
+
+</tr>
+
+ {% endfor %}
+ 
+
+
+{% endblock content %}

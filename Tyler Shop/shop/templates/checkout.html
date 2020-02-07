@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Checkout</h1>
+<form method="POST" action="" class = "alignbox">
+	{{ form.csrf_token }}
+	
+<div class ="">
+		{{ form.firstname.label }} {{ form.firstname}}
+		{% for error in form.firstname.errors %}
+	<span style="color: red;">[{{ error }}]</span>
+		{% endfor %}
+</div>
+	<br/>
+<div class ="">
+		{{ form.surname.label }} {{ form.surname}}
+		{% for error in form.surname.errors %}
+	<span style="color: red;">[{{ error }}]</span>
+		{% endfor %}
+</div>
+	<br/>
+	{{ form.address1.label }} {{ form.address1}}
+	<br/>
+	{{ form.postcode.label }} {{ form.postcode}}
+	<br/>
+	{{ form.nameoncard.label }} {{ form.nameoncard}}
+	<br/>
+<div class="">
+		{{ form.cardnumber.label }} {{ form.cardnumber}}
+		{% for error in form.cardnumber.errors %}
+	<span style="color: red;">[{{ error }}]</span>
+		{% endfor %}
+	</div>
+	
+	<br/>
+	{{ form.expirationdate.label }} {{ form.expirationdate}}
+	<br/>
+	{{ form.cvvcode.label }} {{ form.cvvcode}}
+	
+	<input type="submit" value="Checkout Now">
+
+</form>
+
+{% endblock content %}

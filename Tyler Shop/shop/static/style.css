@@ -1,0 +1,68 @@
+body {
+  font-family:helvetica, sans-serif;
+  /*background-color: #c0bce0;*/
+  background-color: #fff7fe;
+}
+
+h1 {
+  padding-left: 20px;
+  font-family:sans-serif;
+  color:#cc3300;
+}
+
+a {
+  text-decoration:none;
+  color:white;
+  /*color:#104e77;*/
+}
+
+a:hover {
+  /*color:#77b6e2;*/
+  color:#0cc3300;
+}
+
+.itemName {
+  color:black;
+  text-decoration:underline;
+}
+#header {
+    padding:10px 100px;
+    font-size:22px;
+    overflow:auto;
+    background-color:#0000ff;
+    border: 3px solid #000000;
+    /*background-color: #ffffe6;*/
+}
+
+.logo{
+    padding:10px 100px;
+    font-size:25px;
+    overflow:auto;
+    background-color:#6a00ad;
+    border: 3px solid #000000;
+    color:black;
+}
+
+.ItemImage{
+
+  width: 300px;
+  height: 40%;
+}
+
+.AddtoBasket{
+  color:white;
+  background-color:#0a083f;
+}
+
+.alignbox{
+display:inline-block;
+width:200px;
+margin-right:30px;
+text-align:left;
+}
+
+.basketimage{
+
+  width:100px;
+  height:50%;
+}

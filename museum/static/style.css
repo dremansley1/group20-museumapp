@@ -8,6 +8,13 @@ html, body {
   
 }
 
+.important{
+    text-align: center;
+    color:#e74c3c;
+    font-size:16px;
+    font-weight:600;
+}
+
 header{
     width:100%;
     height:50px;
@@ -51,6 +58,13 @@ header h1{
     font-size:18px;
 }
 /********** Museum Map Page **********/
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
 
 .floor_nav{
     width: 90%;

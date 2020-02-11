@@ -5,8 +5,6 @@ from museum.models import *
 from museum.config import *
 from flask_login import login_user, current_user, logout_user, login_required
 
-#page routing setup
-
 @app.route("/", methods=['GET', 'POST'])
 def mainpage():
     return render_template("index.html", museum_data = museum_info, page_name = "Cardiff Museum");

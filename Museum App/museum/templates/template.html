@@ -1,0 +1,80 @@
+<!doctype html">
+<html lang="en">
+<head>
+
+{% block museum_metadata %}
+<title>{{ museum_data.museum_name }} - {{ page_name }}</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+</head>
+<body>
+
+	{% block header %}
+	<header class="header"> 
+        <i class="material-icons left-icon">
+account_circle
+</i>
+	<h1>{{ page_name }}</h1>
+        <i class="material-icons right-icon">
+            settings
+</i>
+	</header>
+  
+	{% endblock %}
+
+
+<section class="mainContent">
+	{% block main_content %}
+
+    
+    
+	{% endblock %}
+
+</section>
+
+{% block footer %}
+	<footer class="footer">
+        <div class="menu-btn active">
+        
+           <a href="{{ url_for('mainpage') }}"><i class="material-icons active">
+map
+               </i></a>
+            Map
+             </div>
+           <div class="menu-btn">
+                    
+        <a href="{{ url_for('search') }}"><i class="material-icons">
+search
+            </i></a>
+               Search
+        </div>
+        <div class="menu-btn">
+                    
+        <i class="material-icons">
+camera_rear
+</i>
+            Scan
+        </div>
+             <div class="menu-btn">       
+         <a href="{{ url_for('settings') }}"><i class="material-icons">
+settings
+             </i></a>
+                 Settings
+        </div>
+            
+       
+	</footer>
+	{% endblock %}
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Changes we made to the database from the original mockup:
+
+- Storing x and y coordinates as 2 separate column values instead of in 1 column
+- Changing 'timePeriod' to 'Date'
+- Removing Movement

@@ -59,6 +59,13 @@ header h1{
 }
 /********** Museum Map Page **********/
 
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
 .floor_nav{
     width: 90%;
     height: 35px;

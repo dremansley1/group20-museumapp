@@ -1,3 +1,4 @@
+import os
 from museum import app, db
 from flask import Flask, render_template, url_for, request, flash, redirect, session
 from museum.models import *

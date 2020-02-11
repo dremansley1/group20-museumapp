@@ -28,7 +28,7 @@ deactivate () {
     fi
 
     unset VIRTUAL_ENV
-    if [ ! "$1" = "nondestructive" ] ; then
+    if [ ! "${1:-}" = "nondestructive" ] ; then
     # Self destruct!
         unset -f deactivate
     fi
@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Admin\Documents\Computer Science Year 1\Web Applications\Flask Labs\Working Flask Book Store\FLASK_labs_snapshot_2\venv"
+VIRTUAL_ENV="C:\Users\ostoc\OneDrive\Desktop\groupProj\group20-museumapp\Tyler Shop\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

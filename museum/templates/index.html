@@ -9,26 +9,33 @@
 <!-------- Room Buttons -------->
 
 <section class="floor_nav tab">
-    <button class="tablinks" onclick="showMap(event, 'floor1')">Floor 1</button>
-    <button class="tablinks" onclick="showMap(event, 'floor2')">Floor 2</button>
-    <button class="tablinks" onclick="showMap(event, 'floor3')">Floor 3</button>
+    <button class="tablinks" id="floor1_btn" onclick="showMap(event, 'floor1')"><i class="material-icons-outlined size-13">
+filter_1</i>&nbsp; Floor 1</button>
+    <button class="tablinks" onclick="showMap(event, 'floor2')"><i class="material-icons-outlined size-13">
+filter_2</i>&nbsp; Floor 2</button>
+    <button class="tablinks" onclick="showMap(event, 'floor3')"><i class="material-icons-outlined size-13">
+filter_3</i>&nbsp; Floor 3</button>
 
-    <h2 class="sectionTitle">Museum Map</h2>
-    
-    <h3 class="important">MAP IN PROGRESS</h3>
-    
     <div id="floor1" class="tabcontent">
-  <h3>Floor 1</h3>
+    <h2 class="sectionTitle"><i class="material-icons-outlined size-15">
+filter_1</i> &nbsp;Map - Floor 1</h2>
 
+<section class="museum_map"></section>
 </div>
 
 <div id="floor2" class="tabcontent">
-  <h3>Floor 2</h3>
+   <h2 class="sectionTitle"><i class="material-icons-outlined size-15">
+filter_2</i> &nbsp;Map - Floor 2</h2>
+
+<section class="museum_map"></section>
 
 </div>
 
 <div id="floor3" class="tabcontent">
-  <h3>Floor 3</h3>
+<h2 class="sectionTitle"><i class="material-icons-outlined size-15">
+filter_3</i> &nbsp;Map - Floor 3</h2>
+
+<section class="museum_map"></section>
 
 </div>
     
@@ -47,6 +54,8 @@ function showMap(evt, floor) {
   document.getElementById(floor).style.display = "block";
   evt.currentTarget.className += " active";
 }
-        showMap("event","floor1");
+
+        
+          document.getElementById("floor1_btn").click();
 </script>
 {% endblock %}

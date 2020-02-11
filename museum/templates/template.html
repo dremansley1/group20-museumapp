@@ -5,8 +5,7 @@
 {% block museum_metadata %}
 <title>{{ museum_data.museum_name }} - {{ page_name }}</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
 
@@ -17,12 +16,12 @@
 
 	{% block header %}
 	<header class="header"> 
-        <i class="material-icons left-icon">
+        <i class="material-icons-outlined left-icon">
 account_circle
 </i>
 	<h1>{{ page_name }}</h1>
-        <i class="material-icons right-icon">
-            settings
+        <i class="material-icons-outlined right-icon">
+            notification_important
 </i>
 	</header>
   
@@ -42,33 +41,32 @@ account_circle
 	<footer class="footer">
         <div class="menu-btn active">
         
-           <a href="{{ url_for('mainpage') }}"><i class="material-icons active">
+           <a href="{{ url_for('mainpage') }}"><i class="material-icons-outlined active">
 map
                </i></a>
-            Map
+            <span>Map</span>
              </div>
            <div class="menu-btn">
                     
-        <a href="{{ url_for('search') }}"><i class="material-icons">
+        <a href="{{ url_for('search') }}"><i class="material-icons-outlined">
 search
             </i></a>
-               Search
+               <span>Search</span>
         </div>
         <div class="menu-btn">
                     
-        <i class="material-icons">
-camera_rear
+        <i class="material-icons-outlined">
+center_focus_weak
 </i>
-            Scan
+            <span>Scan</span>
         </div>
              <div class="menu-btn">       
-         <a href="{{ url_for('settings') }}"><i class="material-icons">
+         <a href="{{ url_for('settings') }}"><i class="material-icons-outlined">
 settings
              </i></a>
-                 Settings
+                 <span>Settings</span>
         </div>
             
-       
 	</footer>
 	{% endblock %}
 

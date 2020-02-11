@@ -8,21 +8,17 @@ html, body {
   
 }
 
-.important{
-    text-align: center;
-    color:#e74c3c;
-    font-size:16px;
-    font-weight:600;
-}
 
 header{
     width:100%;
     height:50px;
-    background-color:#222;
+    background-color:#FFFFFF;
     position: relative;
+/*
       -webkit-box-shadow: 0 1px 1px -1px gray;
 	   -moz-box-shadow: 0 1px 1px -1px gray;
 	        box-shadow: 0 1px 1px -1px gray;
+*/
 }
 
 header .left-icon{
@@ -30,7 +26,7 @@ header .left-icon{
     top: 50%;
     left:20px;
     transform:translate(0%,-50%);
-    color:#fff;
+    color:#2c3e50;
     font-size:20px;
 }
 
@@ -39,12 +35,12 @@ header .right-icon{
     top: 50%;
     right:20px;
     transform:translate(0%,-50%);
-    color:#fff;
+    color:#2c3e50;
     font-size:20px;
 }
 
 header h1{
-    color:#FFF;
+    color:#2c3e50;
     font-weight:bold;
     line-height:50px;
     font-size:16px;
@@ -53,27 +49,24 @@ header h1{
 
 .sectionTitle{
     color:#222;
-    margin-left:10px;
-    padding-top:50px;
-    font-size:18px;
+    margin-left:15px;
+    padding: 30px 0 0 0;
+    font-size:16px;
 }
 /********** Museum Map Page **********/
 
 .tabcontent {
   display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
+  padding: 6px 0px;
   border-top: none;
 }
 
 .floor_nav{
-    width: 90%;
+    width: 100%;
     height: 35px;
-    background-color:#efefef;
-    border-radius:6px;
-    margin:10px 5%;
-    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    background-color:#fff;
+    border-bottom:1px solid rgba(0,0,0,0.1);
+
 }
 
 .floor_nav button{
@@ -89,15 +82,15 @@ header h1{
 }
 
 .floor_nav .active{
-    color:#c0392b;
+    color:#2c3e50;
     font-weight:600;
+    border-bottom: 2px solid #2c3e50;
 }
 .museum_map{
     width:100%;
     height:400px;
-    background-color: #fff;
-
-    border-radius:6px;
+    background-color: #efefef;
+    margin:0;
 }
 
 /********** Search Page **********/
@@ -122,6 +115,18 @@ header h1{
     font-size:11px;
 }
 
+/********** Icon Sizing **********/
+
+.size-13{
+    font-size:13px !important;
+}
+.size-15{
+    font-size:15px !important;
+}
+.size-16{
+    font-size:16px !important;
+}
+
 /********** Footer Page **********/
 
 footer{
@@ -144,12 +149,22 @@ footer .menu-btn{
     position: relative;
     text-align: center;
     font-size:12px;
+    padding-top:5px;
+}
+footer .menu-btn span{
+  
+}
+
+footer .material-icons-outlined{
+    color: rgba(0,0,0,0.5) !important;
+    width:100%;
 }
 
 footer .active{
-    color:#c0392b !important;
+    color:#e74c3c !important;
     font-weight:600;
 }
+
 footer .menu-btn .material-icons{
     margin-left:50%;
     margin-top:5px;

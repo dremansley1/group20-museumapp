@@ -25,6 +25,10 @@ def artifact():
 def room_artifacts():
     return render_template('room_artifacts.html', museum_data = museum_info, page_name = "Artifacts");
 
+@app.route("/scan", methods=['GET', 'POST'])
+def scan():
+    return render_template('scan.html', museum_data = museum_info, page_name = "Scan");
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()

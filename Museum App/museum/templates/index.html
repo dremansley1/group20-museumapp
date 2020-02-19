@@ -16,8 +16,8 @@ filter_2</i>&nbsp; Floor 2</button>
     <button class="tablinks" onclick="showMap(event, 'floor3')"><i class="material-icons-outlined size-13">
 filter_3</i>&nbsp; Floor 3</button>
 
-    <div id="floor1" class="tabcontent">
-    <h2 class="sectionTitle"><i class="material-icons-outlined size-15">
+<div id="floor1" class="tabcontent">
+<h2 class="sectionTitle"><i class="material-icons-outlined size-15">
 filter_1</i> &nbsp;Map - Floor 1</h2>
 
 <section class="museum_map"></section>
@@ -38,9 +38,11 @@ filter_3</i> &nbsp;Map - Floor 3</h2>
 <section class="museum_map"></section>
 
 </div>
+
+
+            <a href="{{ url_for('artifact') }}">
     
-    
-    <script>
+  <script>
 function showMap(evt, floor) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -56,6 +58,6 @@ function showMap(evt, floor) {
 }
 
         
-          document.getElementById("floor1_btn").click();
+document.getElementById("floor1_btn").click();
 </script>
 {% endblock %}

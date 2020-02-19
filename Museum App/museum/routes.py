@@ -15,11 +15,14 @@ def settings():
     
 @app.route("/search", methods=['GET', 'POST'])
 def search():
+                   # rooms = Room.query.all()
     return render_template('search.html', museum_data = museum_info, page_name = "Search");
 
 @app.route("/artifact", methods=['GET', 'POST'])
 def artifact():
-    return render_template('artifact.html', museum_data = museum_info, page_name = "Artifact");
+    artPieces = ArtPiece.query.all()                                
+
+    return render_template('artifact.html', artPieces = artPieces,museum_data = museum_info, page_name = "Artifact");
 
 @app.route("/room_artifacts", methods=['GET', 'POST'])
 def room_artifacts():

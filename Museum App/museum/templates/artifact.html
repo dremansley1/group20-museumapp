@@ -6,8 +6,9 @@
 
 {% block main_content %}
 
- <img class = "" src = "{{ url_for('static', filename='img/' +  artPieces[5].picture_path) }}">
-{{ artPieces[5].title }}
+ <img class = "" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
+{{ artPiece.title }}<br>
+{{ artPiece.description }}
 
 
 

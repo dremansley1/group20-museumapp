@@ -20,9 +20,10 @@ def search():
 
 @app.route("/artifact", methods=['GET', 'POST'])
 def artifact():
-    artPieces = ArtPiece.query.all()                                
+#artPieces = ArtPiece.query.all()                                
+    artPiece = ArtPiece.query.get_or_404(3)
 
-    return render_template('artifact.html', artPieces = artPieces,museum_data = museum_info, page_name = "Artifact");
+    return render_template('artifact.html', artPiece = artPiece,museum_data = museum_info, page_name = "Artifact");
 
 @app.route("/room_artifacts", methods=['GET', 'POST'])
 def room_artifacts():

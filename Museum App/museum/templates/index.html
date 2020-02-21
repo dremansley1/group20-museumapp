@@ -18,6 +18,8 @@ filter_3</i>&nbsp; Floor 3</button>
 
 <div id="floor1" class="tabcontent">
     <h2 class="sectionTitle"><i class="material-icons-outlined size-15">
+
+
 filter_1</i> &nbsp;Map - Floor 1</h2>
 <section class="museum_map">
  <div class="map">
@@ -149,13 +151,12 @@ filter_3</i> &nbsp;Map - Floor 3</h2>
 </div>
 
 
-            <a href="{{ url_for('artifact') }}">
+<a href="{{ url_for('artifact') }}">
     
-<<<<<<< HEAD
-    <script>
-=======
-  <script>
->>>>>>> 77a40c7ef0c91e400f6dc235b5eec5107ca4a037
+
+
+<script>
+
 function showMap(evt, floor) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -169,13 +170,10 @@ function showMap(evt, floor) {
   document.getElementById(floor).style.display = "block";
   evt.currentTarget.className += " active";
 }
-<<<<<<< HEAD
-        document.getElementById("floor1_btn").click();
-=======
 
         
 document.getElementById("floor1_btn").click();
->>>>>>> 77a40c7ef0c91e400f6dc235b5eec5107ca4a037
+
 </script>
 
 {% endblock %}

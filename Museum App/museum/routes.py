@@ -2,8 +2,12 @@ import os
 from museum import app, db
 from flask import Flask, render_template, url_for, request, flash, redirect, session
 from museum.models import *
+from museum.forms import *
 from museum.config import *
 from flask_login import login_user, current_user, logout_user, login_required
+#from sqlalchemy import create_engine
+from sqlalchemy import *
+
 
 @app.route("/", methods=['GET', 'POST'])
 def mainpage():
@@ -15,15 +19,25 @@ def settings():
     
 @app.route("/search", methods=['GET', 'POST'])
 def search():
-                   # rooms = Room.query.all()
-    return render_template('search.html', museum_data = museum_info, page_name = "Search");
+    form = ArtPieceSearchForm()
+    search = ArtPieceSearchForm(request.form)
+    if request.method == 'POST':
+        artPieces = []
+        search_string = search.data['search']
+        if search.data['search'] != '':
+            search_string = '%{0}%'.format(search_string)
+            artPieces = ArtPiece.query.filter(or_( ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))) 
+            return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
+    artPieces = ArtPiece.query.all()
+    return render_template('search.html', artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form);
+
+##################################
+
 
 @app.route("/artifact", methods=['GET', 'POST'])
 def artifact():
-#artPieces = ArtPiece.query.all()                                
     artPiece = ArtPiece.query.get_or_404(3)
-
-    return render_template('artifact.html', artPiece = artPiece,museum_data = museum_info, page_name = "Artifact");
+    return render_template('artifact.html', artPiece = artPiece, museum_data = museum_info, page_name = "Artifact");
 
 @app.route("/room_artifacts", methods=['GET', 'POST'])
 def room_artifacts():

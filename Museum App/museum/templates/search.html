@@ -6,10 +6,32 @@
 
 {% block main_content %}
 
-<section class="search_container">
-    <input type="text" class="search_input" placeholder="Enter a title, artist, or keywords">
-</section>
 
+
+
+
+{% from "_formhelpers.html" import render_field %}
+
+<form method=post>
+  <dl>
+    {{ render_field(form.select) }}
+    <p>
+    {{ render_field(form.search) }}
+  </dl>
+  <p><input type=submit value=Search>
+</form>
+
+{%for artPiece in artPieces%}
+<div class="thumbnail">
+	<img class = "thumbnail_img" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
+	  	<div class="container">
+	   		<p>{{artPiece.title}}</p> <br>
+	    	<p>{{artPiece.date}}</p> 
+	  	</div>
+</div>
+<br>
+<br>
+{%endfor%}
 
 
 

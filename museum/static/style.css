@@ -1,0 +1,158 @@
+html, body {
+    background-color:#fff;
+    margin:0;
+    padding:0;
+    font-family: 'Quicksand', sans-serif !important;
+    max-width: 100%;
+    overflow-x: hidden;
+  
+}
+
+.important{
+    text-align: center;
+    color:#e74c3c;
+    font-size:16px;
+    font-weight:600;
+}
+
+header{
+    width:100%;
+    height:50px;
+    background-color:#222;
+    position: relative;
+      -webkit-box-shadow: 0 1px 1px -1px gray;
+	   -moz-box-shadow: 0 1px 1px -1px gray;
+	        box-shadow: 0 1px 1px -1px gray;
+}
+
+header .left-icon{
+    position: absolute;
+    top: 50%;
+    left:20px;
+    transform:translate(0%,-50%);
+    color:#fff;
+    font-size:20px;
+}
+
+header .right-icon{
+    position: absolute;
+    top: 50%;
+    right:20px;
+    transform:translate(0%,-50%);
+    color:#fff;
+    font-size:20px;
+}
+
+header h1{
+    color:#FFF;
+    font-weight:bold;
+    line-height:50px;
+    font-size:16px;
+    text-align:center;
+}
+
+.sectionTitle{
+    color:#222;
+    margin-left:10px;
+    padding-top:50px;
+    font-size:18px;
+}
+/********** Museum Map Page **********/
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.floor_nav{
+    width: 90%;
+    height: 35px;
+    background-color:#efefef;
+    border-radius:6px;
+    margin:10px 5%;
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.floor_nav button{
+    width: 33.33%;
+    height: 35px;
+    margin: 0px;
+    float: left;
+    border:none;
+    background-color:transparent;
+    font-size:12px;
+    outline:none;
+    color: #222;
+}
+
+.floor_nav .active{
+    color:#c0392b;
+    font-weight:600;
+}
+.museum_map{
+    width:100%;
+    height:400px;
+    background-color: #fff;
+
+    border-radius:6px;
+}
+
+/********** Search Page **********/
+
+.search_container{
+    width: 100%;
+    height: 50px;
+    background-color: #FFFFFF;
+        	-webkit-box-shadow:0 2px 2px -2px gray;
+	   -moz-box-shadow: 0 2px 2px -2px gray;
+	        box-shadow: 0 2px 2px -2px gray;
+}
+
+.search_container .search_input{
+    width:90%;
+    height: 30px;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 6px;
+    background-color:#F6f6f8;
+    margin:10px 5%;
+    text-indent:15px;
+    font-size:11px;
+}
+
+/********** Footer Page **********/
+
+footer{
+  background-color:#FFFFFF;
+    width:100vw;
+    height:50px;
+    position: fixed;
+    bottom:0;
+    box-shadow: 0px 0 2px gray;
+}
+footer .navigation{
+    width:100%;
+    height:50px;
+    position: relative
+}
+footer .menu-btn{
+    height:50px;
+    width:25%;
+    float:left;
+    position: relative;
+    text-align: center;
+    font-size:12px;
+}
+
+footer .active{
+    color:#c0392b !important;
+    font-weight:600;
+}
+footer .menu-btn .material-icons{
+    margin-left:50%;
+    margin-top:5px;
+    transform:translate(-100%,0);
+    color:#222;
+}

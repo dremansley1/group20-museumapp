@@ -130,6 +130,34 @@ header h1{
     font-size:11px;
 }
 
+
+.thumbnail {
+  box-shadow: 0 6px 8px 0 rgba(0,0,0,0.2);
+  width: 100%;
+  border-radius: 5px;
+  background-color: yellow;
+  height: 80px;
+}
+
+
+.thumbnail img {
+  border-radius: 5px 5px 5px 5px;
+  float:left;
+  height : 100%
+
+
+}
+
+.container {
+float:left
+color:red;
+}
+
+.thumbnail p{
+    padding: 5px 5px 5px 5px;
+
+}
+
 /********** Scan Page **********/
 video{
     width: 95%;

@@ -22,13 +22,16 @@
 </form>
 
 {%for artPiece in artPieces%}
-<div class="thumbnail">
-	<img class = "thumbnail_img" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
-	  	<div class="container">
-	   		<p>{{artPiece.title}}</p> <br>
-	    	<p>{{artPiece.date}}</p> 
-	  	</div>
-</div>
+<a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id) }}" class="itemName"> 
+	<div class="thumbnail">
+		<img class = "thumbnail_img" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
+		<div class="container">
+		   	<p>{{artPiece.title}} <br>
+		   	{{artPiece.date}}</p> <br>
+	    </div>
+	</div>
+
+</a>
 <br>
 <br>
 {%endfor%}

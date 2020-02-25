@@ -23,7 +23,7 @@ class Room(db.Model):
 
 class ArtPiece(db.Model):
     artwork_id = db.Column(db.Integer, primary_key=True)
-    artist_id = db.Column(db.Integer, nullable=False)
+    artist_id = db.Column(db.Integer, db.ForeignKey("Artist.artist_id") , nullable=False)
     room_id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(50),nullable=False)
     description = db.Column(db.String(120), nullable=False)

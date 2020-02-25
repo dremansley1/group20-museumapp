@@ -26,7 +26,13 @@ def search():
         search_string = search.data['search']
         if search.data['search'] != '':
             search_string = '%{0}%'.format(search_string)
-            artPieces = ArtPiece.query.filter(or_( ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))) 
+            artPieces = ArtPiece.query.filter(or_(  ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))) 
+
+           #### result = ArtPiece.query.join(Artist).filter(Artist.artist_name.like(search_string) ).all()
+
+          #  re=ArtPiece.query.outerjoin(Artist, ArtPiece.c.artist_id == Artist.c.artist_id)
+
+
             return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
     artPieces = ArtPiece.query.all()
     return render_template('search.html', artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form);
@@ -34,9 +40,9 @@ def search():
 ##################################
 
 
-@app.route("/artifact", methods=['GET', 'POST'])
-def artifact():
-    artPiece = ArtPiece.query.get_or_404(3)
+@app.route("/artifact/<int:artwork_id>", methods=['GET', 'POST'])
+def artifact(artwork_id):
+    artPiece = ArtPiece.query.get_or_404(artwork_id)
     return render_template('artifact.html', artPiece = artPiece, museum_data = museum_info, page_name = "Artifact");
 
 @app.route("/room_artifacts", methods=['GET', 'POST'])

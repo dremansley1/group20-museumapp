@@ -5,6 +5,8 @@
 {% endblock %}
 
 {% block main_content %}
+
+
 <video autoplay></video>
 
 <script>
@@ -16,32 +18,45 @@ const video = document.querySelector('video');
 
 navigator.mediaDevices.getUserMedia(constraints).
   then((stream) => {video.srcObject = stream});
+</script> 
+
+
+<form method=post>
+
+<p></p>
+  <input name="scan" type=text placeholder="QR Code" class="qrcode-text" readonly>
+  <label class = "qrcode-text-btn">
+    <input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1>
+  </label>
+  <input type=submit value="Find">
+
+  <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+  
+  <script>
+    function openQRCamera(node) {
+      var reader = new FileReader();
+      reader.onload = function() {
+        node.value = "";
+        qrcode.callback = function(res) {
+          if(res instanceof Error) {
+            alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+          } else {
+            node.parentNode.previousElementSibling.value = res;
+          }
+        };
+        qrcode.decode(reader.result);
+      };
+      reader.readAsDataURL(node.files[0]);
+    }
+
+    function showQRIntro() {
+      return confirm("Use your camera to take a picture of a QR code.");
+    }
+
 </script>
 
-<input type=text placeholder="QR Code" class=qrcode-text>
-<label class=qrcode-text-btn>
-	<input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1>
-</label> 
-<input type=button value="Go" disabled>
-<script>
-function openQRCamera(node) {
-  var reader = new FileReader();
-  reader.onload = function() {
-    node.value = "";
-    qrcode.callback = function(res) {
-      if(res instanceof Error) {
-        alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
-      } else {
-        node.parentNode.previousElementSibling.value = res;
-      }
-    };
-    qrcode.decode(reader.result);
-  };
-  reader.readAsDataURL(node.files[0]);
-}
 
-function showQRIntro() {
-  return confirm("Use your camera to take a picture of a QR code.");
-}
-</script>
+</form>
+
+
 {% endblock %}

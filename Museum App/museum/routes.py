@@ -45,9 +45,11 @@ def artifact(artwork_id):
     artPiece = ArtPiece.query.get_or_404(artwork_id)
     return render_template('artifact.html', artPiece = artPiece, museum_data = museum_info, page_name = "Artifact");
 
-@app.route("/room_artifacts", methods=['GET', 'POST'])
-def room_artifacts():
-    return render_template('room_artifacts.html', museum_data = museum_info, page_name = "Artifacts");
+@app.route("/room/<int:room_id>", methods=['GET', 'POST'])
+def room(room_id):
+    room = Room.query.get_or_404(room_id)
+    page_name = "Room " + str(room.room_id)
+    return render_template('room.html', museum_data = museum_info, page_name = page_name, room = room);
 
 @app.route("/scan", methods=['GET', 'POST'])
 def scan():

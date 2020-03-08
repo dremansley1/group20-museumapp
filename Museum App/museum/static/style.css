@@ -108,6 +108,11 @@ header h1{
 }
 
 
+/********** Room Page **********/
+.roomTitle{
+    padding-left: 30px;
+}
+
 /********** Search Page **********/
 
 .search_container{

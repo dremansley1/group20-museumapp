@@ -113,6 +113,24 @@ header h1{
     padding-left: 30px;
 }
 
+svg{
+    position: relative;
+}
+
+.room{
+    max-width: 100%;
+    width: 95%;
+    height: auto;
+}
+
+.pin{
+    position: absolute;
+}
+
+.relative{
+    position: relative;
+}
+
 /********** Search Page **********/
 
 .search_container{

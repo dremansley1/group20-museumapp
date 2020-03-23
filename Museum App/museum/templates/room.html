@@ -11,21 +11,13 @@
 </section>
 
 <section class="museum_map">
-    <div class="map">
-    <?xml version="1.0" encoding="UTF-8"?>
-    <svg style="width: 100%; height: 100%;" class="scaling-svg" width="210mm" height="297mm" version="1.1" viewBox="0 0 210 297" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <g stroke="#000" stroke-linejoin="round">
-    <rect x="42.333" y="56.607" width="120.2" height="195.04" stroke-width=".030662" style="paint-order:markers fill stroke"/>
-    <rect x="44.603" y="58.876" width="115.28" height="190.12" fill="#f9f9f9" stroke-width=".03336" style="paint-order:markers fill stroke"/>
-    </g>
-    </svg>
-</div>
+    <div class="relative">
+    <img src="{{ url_for('static', filename='map/room.svg')}}" alt="room's layout" class="room">
+                  {%for artpiece in artpieces%}
+                   <a href="{{ url_for('artifact', artwork_id = artpiece.artwork_id) }}" class="itemName"> 
+                    <img src= "{{ url_for('static', filename='img/' + artpiece.picture_path) }}"  alt="" style="height: 35px; width: 35px; left: {{artpiece.location_x+20}}px; top:{{artpiece.location_y+20}}px; position: absolute;"> 
+                    </a>
+                    {%endfor%}
+    </div>
 </section>
-
-<script>
-function roomColour(){
-    
-}
-</script>
-
 {% endblock %}

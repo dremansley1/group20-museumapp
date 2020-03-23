@@ -7,7 +7,7 @@
 {% block main_content %}
 
 
-<video autoplay></video>
+<!--<video autoplay></video>-->
 
 <script>
 const constraints = {
@@ -21,17 +21,23 @@ navigator.mediaDevices.getUserMedia(constraints).
 </script> 
 
 
-<form method=post>
+<form method="post" class="scanform">
 
-<p></p>
-  <input name="scan" type=text placeholder="QR Code" class="qrcode-text" readonly>
+  <input name="scan" type=text placeholder="QR Code" class="qrcode-text" readonly hidden>
   <label class = "qrcode-text-btn">
-    <input type=file accept="image/*" capture=environment onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex=-1>
+    <input type="file" accept="image/*" capture="environment" onclick="return showQRIntro();" onchange="openQRCamera(this);" tabindex="-1">
   </label>
-  <input type=submit value="Find">
+    <p class="note">Click the QR code above to activate scanner, or upload an image</p>
+  <input type="submit" value="Find Artifact">
 
   <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
-  
+    
+</form>
+
+<form>
+<input type = "button" value="Return to Previous Page" class="previousPage" onClick="history.back()">
+</form>
+
   <script>
     function openQRCamera(node) {
       var reader = new FileReader();
@@ -54,12 +60,5 @@ navigator.mediaDevices.getUserMedia(constraints).
     }
 
 </script>
-
-
-</form>
-
-<form>
-<input type = "button" value="Return to Previous Page" onClick="history.back()">
-</form>
 
 {% endblock %}

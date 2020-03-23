@@ -64,7 +64,7 @@ def scan():
 def login():
     form = LoginForm()
     if request.method == 'POST':
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(username=form.username.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user)
             flash("You have been signed in!")
@@ -72,15 +72,15 @@ def login():
         else:
             flash("Incorrect Login Credentials!")
             return redirect(url_for('login'))
-    return render_template('login.html', page_name='Login to Your Account', museum_data = museum_info, form=form)
+    return render_template('login.html', page_name='Admin Login', museum_data = museum_info, form=form)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data,
+        user_login = user(username=form.username.data,
         email=form.email.data, password=form.password.data)
-        db.session.add(user)
+        db.session.add(user_login)
         db.session.commit()
         flash("You have been successfully registered") 
         return redirect(url_for('login'))

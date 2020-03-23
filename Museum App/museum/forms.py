@@ -1,6 +1,3 @@
-
-
-
 from flask_wtf import FlaskForm
 import re
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, Form, SelectField, HiddenField
@@ -9,14 +6,16 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 #from models import  *
 
 
-
-
 class ArtPieceSearchForm(FlaskForm):
     choices = [('title', 'title')]
     select = SelectField('Search for art:', choices=choices)
     search = StringField('')
     submit = SubmitField('SUBMIT')
 
+class LoginForm(FlaskForm):
+    username = StringField('Username')
+    password = PasswordField('Password')
+    submit = SubmitField("Login")
 
 # class QRScanForm(FlaskForm):
 # 	scan = StringField('', render_kw={"placeholder": "QR Code"}, class_= "qrcode-text")

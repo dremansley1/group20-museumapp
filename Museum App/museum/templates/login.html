@@ -1,0 +1,25 @@
+{% extends 'template.html' %}
+
+{% block MuseumName %}
+{{ museum_data.store_name }}
+{% endblock %}
+
+{% block main_content %}
+
+{% from "_formhelpers.html" import render_field %}
+
+
+<span class="material-icons login-icon">
+account_circle
+</span>
+
+<h4 class="login-header">Login to your account</h4>
+<form method="post" class="login-form">
+    {{ render_field(form.username) }}
+    <p>
+    {{ render_field(form.password) }}
+    <p><input type="submit" value="Login"></p>
+</form>
+
+
+{% endblock %}

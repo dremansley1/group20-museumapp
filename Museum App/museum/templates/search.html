@@ -12,22 +12,27 @@
 
 {% from "_formhelpers.html" import render_field %}
 
-<form method=post>
-  <dl>
+<form method="post" class="searchForm">
+
     {{ render_field(form.select) }}
     <p>
     {{ render_field(form.search) }}
-  </dl>
-  <p><input type=submit value=Search>
+  
+  <p>
+      <button type="submit"><span class="material-icons size-16">
+search
+          </span></button>
 </form>
 
 {%for artPiece in artPieces%}
 <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id) }}" class="itemName"> 
 	<div class="thumbnail">
-		<img class = "thumbnail_img" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
+        <div class="img_container">
+		<img class="thumbnail_img" src="{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
+        </div>
 		<div class="container">
 		   	<p>{{artPiece.title}} <br>
-		   	{{artPiece.date}}</p> <br>
+		   	Year: {{artPiece.date}}</p> <br>
 	    </div>
 	</div>
 

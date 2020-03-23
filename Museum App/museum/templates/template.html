@@ -16,13 +16,17 @@
 
 	{% block header %}
 	<header class="header"> 
-        <i class="material-icons-outlined left-icon">
+<!--
+        <a href="{{ url_for('login')}}"><i class="material-icons-outlined left-icon">
 account_circle
-</i>
+            </i></a>
+-->
 	<h1>{{ page_name }}</h1>
+<!--
         <i class="material-icons-outlined right-icon">
             notification_important
 </i>
+-->
 	</header>
   
 	{% endblock %}
@@ -76,5 +80,11 @@ settings
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+    
+    <script>
+    $('.menu-btn').click(function(){
+        $(this).addClass("active");
+    });
+    </script>
 </body>
 </html>

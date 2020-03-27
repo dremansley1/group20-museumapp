@@ -65,14 +65,13 @@ def scan():
 def login():
     form = LoginForm()
     if request.method == 'POST':
-        user = User.query.filter_by(username=form.username.data).first()
-        if user is not None and user.verify_password(form.password.data):
-            login_user(user)
+        username = request.form['username']
+        password = request.form['password']
+        if username == "Museum" and password == "Password":
             flash("You have been signed in!")
-            return redirect(url_for('mainPage'))
+            return redirect(url_for('admin'))
         else:
-            flash("Incorrect Login Credentials!")
-            return redirect(url_for('login'))
+            return redirect(url_for('admin'))
     return render_template('login.html', page_name='Admin Login', museum_data = museum_info, form=form)
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -92,3 +91,7 @@ def logout():
     logout_user()
     flash("You have been logged out successfully")
     return redirect(url_for('mainPage'))
+
+@app.route("/admin")
+def admin():
+    return render_template('admin.html', page_name='Admin Page', museum_data = museum_info)

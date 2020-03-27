@@ -15,9 +15,12 @@ account_circle
 
 <h4 class="login-header">Login to your account</h4>
 <form method="post" class="login-form">
-    {{ render_field(form.username) }}
+	<input name="username">
+
+	<input type="password" name="password">
+    <!-- {{ render_field(form.username) }}
     <p>
-    {{ render_field(form.password) }}
+    {{ render_field(form.password) }} -->
     <p><input type="submit" value="Login"></p>
 </form>
 

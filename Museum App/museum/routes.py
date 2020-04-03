@@ -11,11 +11,11 @@ from sqlalchemy import *
 
 @app.route("/", methods=['GET', 'POST'])
 def mainpage():
-    return render_template("index.html", museum_data = museum_info, page_name = "Cardiff Museum");
+    return render_template("index.html", museum_data = museum_info, page_name = "Cardiff Museum", active_page="index");
 
 @app.route("/settings", methods=['GET', 'POST'])
 def settings():
-    return render_template('settings.html', museum_data = museum_info, page_name = "Settings");
+    return render_template('settings.html', museum_data = museum_info, page_name = "Settings", active_page = "settings");
     
 @app.route("/search", methods=['GET', 'POST'])
 def search():
@@ -35,7 +35,7 @@ def search():
 
             return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
     artPieces = ArtPiece.query.all()
-    return render_template('search.html', artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form);
+    return render_template('search.html', artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 
 ##################################
 
@@ -59,7 +59,7 @@ def scan():
         if qr_code != '':
             result = ArtPiece.query.get_or_404(qr_code)
             return render_template('artifact.html', artPiece = result, museum_data = museum_info, page_name = "Artifact");        
-    return render_template('scan.html', museum_data = museum_info, page_name = "Scan");
+    return render_template('scan.html', museum_data = museum_info, page_name = "Scan", active_page="sacn");
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():

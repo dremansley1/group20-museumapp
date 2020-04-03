@@ -20,6 +20,7 @@ navigator.mediaDevices.getUserMedia(constraints).
   then((stream) => {video.srcObject = stream});
 </script> 
 
+<input type="text" value="scan" id="active_page" hidden>
 
 <form method="post" class="scanform">
 
@@ -59,6 +60,22 @@ navigator.mediaDevices.getUserMedia(constraints).
       return confirm("Use your camera to take a picture of a QR code.");
     }
 
+</script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+        var current = $('#active_page').val();
+        $('.menu-btn').removeClass("active");
+        $('.menu-btn').find('.icon').removeClass('active-icon');
+        
+        $('#' + current).addClass("active");
+        $('#' + current).find('.icon').addClass("active-icon");
+    });
+    
 </script>
 
 {% endblock %}

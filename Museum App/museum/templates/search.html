@@ -6,9 +6,7 @@
 
 {% block main_content %}
 
-
-
-
+<input type="text" value="search" id="active_page" hidden>
 
 {% from "_formhelpers.html" import render_field %}
 
@@ -44,5 +42,23 @@ search
 <form>
 <input type = "button" value="Return to Previous Page" onClick="history.back()">
 </form>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+        var current = $('#active_page').val();
+        $('.menu-btn').removeClass("active");
+        $('.menu-btn').find('.icon').removeClass('active-icon');
+        
+        $('#' + current).addClass("active");
+        $('#' + current).find('.icon').addClass("active-icon");
+    });
+    
+</script>
 
 {% endblock %}

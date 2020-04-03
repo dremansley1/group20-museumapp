@@ -65,26 +65,26 @@ artp
 	<footer class="footer">
           
         <a href="{{ url_for('mainpage') }}">
-        <button class="menu-btn active">
+        <button class="menu-btn active" id="index">
          <i class="fas fa-map-marked-alt icon active-icon"></i>
               </button></a>
         
          <a href="{{ url_for('search') }}">
-           <button class="menu-btn">
+           <button class="menu-btn" id="search">
                     
        <i class="fas fa-search icon"></i>
             
              </button></a>
         
           <a href="{{ url_for('scan') }}">    
-        <button class="menu-btn">
+        <button class="menu-btn" id="scan">
               
         <i class="fas fa-qrcode icon"></i>
            
               </button></a>
         
          <a href="{{ url_for('settings') }}">
-             <button class="menu-btn">       
+             <button class="menu-btn" id="settings">       
          <i class="fas fa-cog icon"></i>
     
              </button></a>
@@ -92,17 +92,8 @@ artp
 	</footer>
 	{% endblock %}
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
     
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
-    
-    <script>
-    $('.menu-btn').click(function(){
-        $(this).addClass("active");
-    });
-    </script>
+
 </body>
 </html>

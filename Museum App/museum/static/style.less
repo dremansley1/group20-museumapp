@@ -238,20 +238,26 @@ svg {
 
 
 video{
-    width: 95%;
-    margin:10px;
+    width: 100vw;
+    height:auto;
+    margin:0;
+    background-color:@color3;
+    border-bottom:1px solid rgba(0,0,0,0.2);
 }
 
 .scanform {
-	padding-top:50px;
+	padding-top:10px;
+    text-align: center;
 	input[type="submit"] {
 		border-radius:8px;
 		border:none;
 		font-size: 12px;
 		font-weight:600;
 		height:@height5;
-		margin:20px 10%;
+		margin:10px 10%;
 		width:@width10;
+         background:@color2;
+        color:@color0;
 	}
 	.note {
 		color:@color1;
@@ -262,6 +268,7 @@ video{
 		width:@width10;
 	}
 }
+
 .qrcode-text {
 	margin-left: 10px;
 	margin-right:10px;
@@ -273,10 +280,10 @@ video{
 	cursor:pointer;
 	display:inline-block;
 	font-size:14px;
-	height:40vw;
-	margin:25px 30vw;
+	height:30vw;
+	margin:25px 35vw;
 	vertical-align: middle;
-	width:40vw;
+	width:30vw;
 }
 .qrcode-text-btn>input[type="file"] {
 	height:1px;

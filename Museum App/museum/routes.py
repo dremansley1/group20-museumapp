@@ -71,27 +71,26 @@ def login():
             flash("You have been signed in!")
             return redirect(url_for('admin'))
         else:
-            return redirect(url_for('admin'))
+            return redirect(url_for('login'))
     return render_template('login.html', page_name='Admin Login', museum_data = museum_info, form=form)
 
-@app.route("/register", methods=['GET', 'POST'])
-def register():
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        user_login = user(username=form.username.data,
-        email=form.email.data, password=form.password.data)
-        db.session.add(user_login)
-        db.session.commit()
-        flash("You have been successfully registered") 
-        return redirect(url_for('login'))
-    return render_template('register.html', page_name='Create an Account', museum_data = museum_info, form=form)
+#@app.route("/register", methods=['GET', 'POST'])
+#def register():
+#    form = RegistrationForm()
+#    if form.validate_on_submit():
+#        user_login = user(username=form.username.data,
+#        email=form.email.data, password=form.password.data)
+#        db.session.add(user_login)
+#        db.session.commit()
+#        flash("You have been successfully registered") 
+#        return redirect(url_for('login'))
+#    return render_template('register.html', page_name='Create an Account', museum_data = museum_info, form=form)
 
 @app.route("/logout")
 def logout():
-    logout_user()
     flash("You have been logged out successfully")
-    return redirect(url_for('mainPage'))
+    return render_template("index.html", museum_data = museum_info, page_name = "Cardiff Museum");
 
 @app.route("/admin")
 def admin():
-    return render_template('admin.html', page_name='Admin Page', museum_data = museum_info)
+    return render_template('admin.html', page_name='Admin Dashboard', museum_data = museum_info)

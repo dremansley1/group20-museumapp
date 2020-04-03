@@ -4,11 +4,30 @@
 
 {% block museum_metadata %}
 <title>{{ museum_data.museum_name }} - {{ page_name }}</title>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
-<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+<link rel="stylesheet/less" type="text/css" href="{{ url_for('static', filename='style.less') }}" />
+
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
- <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=H_DDT3pmpfkpJ9X955S6n4VaJuUh4ZmSPzjVhwXUawk0U-LrSVEL4QojJ2J5A0bDZWRzIIElvQQ0kRG0HAgAJo-uhi1VzRTThPQgnF6MuqD129hgnb5xdEKoi_Sgd_9HJxCd4ooivexEFhZYyJx7uQ" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9ibC5vY2tzLm9yZy9KdmVybWEvcmF3LzIzODVjYjc3OTRkMThjNTFlM2FiL2E5MWJlZDUzOTc4YTZkOTQ1NTM5NTJiMzBiODZhZDkzYjJiMDZjMWUv"/><style type="text/css"></style>
+    
+    
+    
+    
+    
+<!--
+    
+ <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=H_DDT3pmpfkpJ9X955S6n4VaJuUh4ZmSPzjVhwXUawk0U-LrSVEL4QojJ2J5A0bDZWRzIIElvQQ0kRG0HAgAJo-uhi1VzRTThPQgnF6MuqD129hgnb5xdEKoi_Sgd_9HJxCd4ooivexEFhZYyJx7uQ" charset="UTF-8"></script>
+    
+<link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9ibC5vY2tzLm9yZy9KdmVybWEvcmF3LzIzODVjYjc3OTRkMThjNTFlM2FiL2E5MWJlZDUzOTc4YTZkOTQ1NTM5NTJiMzBiODZhZDkzYjJiMDZjMWUv"/>
+    
+    
+-->
+    
+    
+    
+
+    
+    <script src="https://kit.fontawesome.com/5ca445b195.js" crossorigin="anonymous"></script>
 
 {% endblock %}
 
@@ -16,19 +35,17 @@
 <body>
 
 	{% block header %}
-	<header class="header"> 
-<!--
-        <a href="{{ url_for('login')}}"><i class="material-icons-outlined left-icon">
-account_circle
-            </i></a>
--->
-	<h1>{{ page_name }}</h1>
-<!--
-        <i class="material-icons-outlined right-icon">
-            notification_important
-</i>
--->
-	</header>
+<header>
+     
+                  <h1>{{page_name}}</h1>
+    
+
+      <div class="right">
+  
+          <a href="{{ url_for('login') }}"><button class="header-btn"><i class="fas fa-user"></i></button></a>
+           <button class="header-btn"><i class="fas fa-search"></i></button>
+      </div>
+</header>
   
 	{% endblock %}
 
@@ -46,33 +63,31 @@ artp
 
 {% block footer %}
 	<footer class="footer">
-        <div class="menu-btn active">
+          
+        <a href="{{ url_for('mainpage') }}">
+        <button class="menu-btn active">
+         <i class="fas fa-map-marked-alt icon active-icon"></i>
+              </button></a>
         
-           <a href="{{ url_for('mainpage') }}"><i class="material-icons-outlined active">
-map
-               </i></a>
-            <span>Map</span>
-             </div>
-           <div class="menu-btn">
+         <a href="{{ url_for('search') }}">
+           <button class="menu-btn">
                     
-        <a href="{{ url_for('search') }}"><i class="material-icons-outlined">
-search
-            </i></a>
-               <span>Search</span>
-        </div>
-        <div class="menu-btn">
-        <a href="{{ url_for('scan') }}">            
-        <i class="material-icons-outlined">
-center_focus_weak
-</i></a>
-            <span>Scan</span>
-        </div>
-             <div class="menu-btn">       
-         <a href="{{ url_for('settings') }}"><i class="material-icons-outlined">
-settings
-             </i></a>
-                 <span>Settings</span>
-        </div>
+       <i class="fas fa-search icon"></i>
+            
+             </button></a>
+        
+          <a href="{{ url_for('scan') }}">    
+        <button class="menu-btn">
+              
+        <i class="fas fa-qrcode icon"></i>
+           
+              </button></a>
+        
+         <a href="{{ url_for('settings') }}">
+             <button class="menu-btn">       
+         <i class="fas fa-cog icon"></i>
+    
+             </button></a>
             
 	</footer>
 	{% endblock %}
@@ -81,6 +96,8 @@ settings
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
     
     <script>
     $('.menu-btn').click(function(){

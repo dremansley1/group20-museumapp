@@ -9,15 +9,13 @@
 {% from "_formhelpers.html" import render_field %}
 
 
-<span class="material-icons login-icon">
-account_circle
-</span>
+<i class="far fa-user-circle login-icon"></i>
 
 <h4 class="login-header">Login to your account</h4>
 <form method="post" class="login-form">
-	<input name="username">
+	<input type="text" name="username" placeholder="Username">
 
-	<input type="password" name="password">
+	<input type="password" name="password" placeholder="Password">
     <!-- {{ render_field(form.username) }}
     <p>
     {{ render_field(form.password) }} -->

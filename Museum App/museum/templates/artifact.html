@@ -8,8 +8,6 @@
 
 
 
-
-
 <div class="art_card">
   <img class = "" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
   <div class="art_text">
@@ -42,24 +40,6 @@
 
 </section>
 
-<script>
-function showMap(evt, floor) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(floor).style.display = "block";
-  evt.currentTarget.className += " active";
-}      
-document.getElementById("floor1_btn").click();
-</script>
-
-
 
 {%for recomended in recomendedArt %}
 
@@ -80,8 +60,6 @@ document.getElementById("floor1_btn").click();
 {%endfor%}
 
 
-
-
 <br><br><br><br><br><br><br><br><br><br>
 <!-- attisty room date?
  -->  
@@ -91,5 +69,25 @@ document.getElementById("floor1_btn").click();
 <form>
 <input type = "button" value="Return to Previous Page" onClick="history.back()">
 </form>
+
+
+<script>
+function showMap(evt, floor) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(floor).style.display = "block";
+  evt.currentTarget.className += " active";
+}      
+document.getElementById("floor1_btn").click();
+</script>
+
+
 
 {% endblock %}

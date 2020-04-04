@@ -32,7 +32,7 @@ def search():
 
           #  re=ArtPiece.query.outerjoin(Artist, ArtPiece.c.artist_id == Artist.c.artist_id)
 
-
+                ### REmBER TO DO ARTIST!!!!!!!!!!!
             return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
     artPieces = ArtPiece.query.all()
     return render_template('search.html', artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
@@ -40,10 +40,31 @@ def search():
 ##################################
 
 
-@app.route("/artifact/<int:artwork_id>", methods=['GET', 'POST'])
-def artifact(artwork_id):
+@app.route("/artifact/<int:artwork_id>/<string:sortType>", methods=['GET', 'POST'])
+def artifact(artwork_id, sortType = "byArtist"):
     artPiece = ArtPiece.query.get_or_404(artwork_id)
-    return render_template('artifact.html', artPiece = artPiece, museum_data = museum_info, page_name = "Artifact");
+
+    artist_ida = artPiece.artist_id
+    artist = Artist.query.get_or_404(artist_ida)
+
+    if(sortType == "byArtist" ):
+        recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
+
+        ##need to change to closed date
+    elif(sortType == "byDate"):
+        recomendedArt = ArtPiece.query.filter_by(date = artPiece.date ).limit(4) 
+
+
+
+    elif(sortType == "byRoom"):
+        recomendedArt = ArtPiece.query.filter_by(room_id =artPiece.room_id).limit(4)
+    else:
+        print("not found sort type in route/artifct.py  type")
+#recomendedArt = recomendedArt.query.filter_by(artwork_id !=artist_ida)
+
+
+  #  artPeices = ArtPiece.query.get_or_404(artwork_id)   
+    return render_template('artifact.html', artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
 
 @app.route("/room/<int:room_id>", methods=['GET', 'POST'])
 def room(room_id):

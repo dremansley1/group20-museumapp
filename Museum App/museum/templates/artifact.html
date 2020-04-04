@@ -14,8 +14,78 @@
   <img class = "" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
   <div class="art_text">
     <h3>{{ artPiece.title }}</h3><br>
+    <h5>{{artist.artist_name}}</h5>
 	<p>{{ artPiece.description }}</p>
-  </div>
+	{{sortType}}
+<!-- 
+<section class="floor_nav tab">
+    <button class="tablinks" id="floor1_btn" onclick="showMap(event, 'floor1')"><i class="fas fa-layer-group"></i>&nbsp; Floor 1</button>
+    
+    <button class="tablinks" onclick="showMap(event, 'floor2')"><i class="fas fa-layer-group"></i>&nbsp; Floor 2</button>
+    <button class="tablinks" onclick="showMap(event, 'floor3')"><i class="fas fa-layer-group"></i>&nbsp; Floor 3</button>
+</section> -->
+
+
+<section class="floor_nav tab">
+
+<a  class="tablinks" href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
+	by Artist
+</a>
+
+<a   class="tablinks" href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byRoom') }}" class="itemName"> 
+	By Room
+</a>
+
+<a   class="tablinks" href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byDate') }}" class="itemName"> 
+	By Date
+</a>
+
+</section>
+
+<script>
+function showMap(evt, floor) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(floor).style.display = "block";
+  evt.currentTarget.className += " active";
+}      
+document.getElementById("floor1_btn").click();
+</script>
+
+
+
+{%for recomended in recomendedArt %}
+
+<a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
+	<div class="thumbnail">
+        <div class="img_container">
+		<img class="thumbnail_img" src="{{ url_for('static', filename='img/' +  recomended.picture_path) }}">
+        </div>
+		<div class="container">
+		   	<p>{{recomended.title}} <br>
+		   	Year: {{recomended.date}}</p> <br>
+	    </div>
+	</div>
+
+</a>
+<br>
+
+{%endfor%}
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br>
+<!-- attisty room date?
+ -->  
+</div>
 </div>
 
 <form>

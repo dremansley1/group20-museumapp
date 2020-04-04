@@ -1,4 +1,4 @@
-{% extends 'template.html' %}
+6{% extends 'template.html' %}
 
 {% block MuseumName %}
 {{ museum_data.store_name }}
@@ -23,7 +23,7 @@ search
 </form>
 
 {%for artPiece in artPieces%}
-<a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id) }}" class="itemName"> 
+<a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
 	<div class="thumbnail">
         <div class="img_container">
 		<img class="thumbnail_img" src="{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">

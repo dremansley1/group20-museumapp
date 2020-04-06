@@ -1,23 +1,21 @@
-// Color variables (appears count calculates by raw css)
-@color0: #ffffff; // Appears 10 times
-@color1: #222222; // Appears 6 times
-@color2: #4e4376; // Appears 5 times
-@color3: #f6f6f8; // Appears 2 times
 
-// Width variables (appears count calculates by raw css)
-@width0: 100vw; // Appears 2 times
-@width1: 100%; // Appears 10 times
-@width4: 60%; // Appears 2 times
-@width6: 30%; // Appears 2 times
-@width7: 95%; // Appears 2 times
-@width8: 70%; // Appears 2 times
-@width10: 80%; // Appears 5 times
+@color0: #ffffff;
+@color1: #222222;
+@color2: #2f3542;
+@color3: #f6f6f8;
+@shadow-all: 0px 0px 2px rgba(0, 0, 0, .2);
+@width0: 100vw;
+@width1: 100%;
+@width4: 60%;
+@width6: 30%;
+@width7: 95%;
+@width8: 70%;
+@width10: 80%;
 
-// Height variables (appears count calculates by raw css)
-@height0: 100%; // Appears 6 times
-@height1: 50px; // Appears 5 times
-@height2: 30px; // Appears 5 times
-@height5: 35px; // Appears 4 times
+@height0: 100%;
+@height1: 50px;
+@height2: 30px;
+@height5: 35px;
 
 html {
 	background-color:@color0;
@@ -37,11 +35,18 @@ body {
 	overflow-x: hidden;
 	padding:0;
 }
+a{
+	text-decoration: none;
+}
+.fixed-top{
+
+}
 header {
 	background-color:@color2;
 	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.08) !important;
 	height: @height1;
 	z-index: 100 !important;
+	width:100%;
 	h1 {
 		color: @color0;
 		float:left;
@@ -64,12 +69,12 @@ header {
 	}
 }
 .header-btn {
-	-moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, .2);
-	-webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, .2);
+	box-shadow: @shadow-all;
+	-moz-box-shadow: @shadow-all;
+	-webkit-box-shadow: @shadow-all;
 	background-color:rgba(0,0,0,0.2);
 	border-radius:50%;
 	border:none;
-	box-shadow: 0px 0px 2px rgba(0, 0, 0, .2);
 	color:@color0;
 	float:right;
 	height:@height2;
@@ -166,26 +171,35 @@ svg {
 	position: relative;
 }
 .searchForm {
-	margin-bottom:30px;
+	margin:20px 0 0 0;
 	min-height:@height1;
 	overflow-y:hidden;
-	position: relative;
-	width:@width1;
+	width:auto;
+	select{
+		width:25%;
+		height:30px;
+		float:left;
+		background-color:#efefef;
+		display:inline;
+		margin:0;
+		margin-left:5%;
+		border-top-left-radius: 6px;
+		border-bottom-left-radius: 6px;
+		border: 1px solid rgba(0,0,0,0.08);
+		text-indent:10px;
+	}
 	input[type="text"] {
 		background-color:@color3;
-		border-radius:6px 0 0 6px;
 		border-right:none;
 		border: 1px solid rgba(0,0,0,0.08);
 		float:left;
 		font-size:11px;
 		height: @height2;
-		margin-left:5%;
-		margin: 0;
 		text-indent:15px;
-		width:@width8;
+		width:50%;
 	}
 	button {
-		background-color:#e74c3c;
+		background-color:@color2;
 		border-radius:0 6px 6px 0;
 		border:1px solid rgba(0,0,0,0.08);
 		color:@color0;
@@ -193,8 +207,7 @@ svg {
 		font-size:12px;
 		height:@height2;
 		margin-right:5%;
-		margin:0;
-		width:20%;
+		width:15%;
 	}
 }
 .thumbnail {
@@ -303,6 +316,7 @@ video{
 }
 .art_text {
 	padding: 2px 16px;
+	height:auto;
 }
 dt {
 	label {
@@ -363,6 +377,37 @@ dd {
 		width:@width10;
 	}
 }
+
+/********** Admin Dashboard Styling **********/
+
+.adminWelcome{
+	 color: #333;
+     margin-left: 15px;
+     margin: 15px 0 5px 15px;
+     position: relative;
+     font-size: 16px;
+     font-family: "Quicksand";
+.logoutBtn{
+     width:auto;
+     position: absolute;
+     right: 10px;
+     border: none;
+     padding: 6px 12px;
+     border-radius: 6px;
+     top: 50%;
+     transform: translate(0%, -50%);
+     background: @color2;
+     color: #FFFFFF;
+     font-weight: 600;
+     font-size: 11px;
+     outline:none;
+     	box-shadow: @shadow-all;
+	-moz-box-shadow: @shadow-all;
+	-webkit-box-shadow: @shadow-all;
+}
+}
+
+
 .size-12 {
 	font-size:12px !important;
 }
@@ -406,4 +451,51 @@ footer {
 	.active {
 		border-bottom: 4px solid @color2;
 	}
+}
+
+
+
+
+
+.searchResult{
+     width:45%;
+     margin:10px 2.5%;
+     height:auto;
+     background-color:#FFF;
+     box-shadow: @shadow-all;
+     border-radius:6px;
+     position: relative;
+     padding:0;
+     float:left;
+     .img-container{
+         width:100%;
+         height:200px;
+         margin:0;
+         position: relative;
+         overflow:hidden;
+         background:@color2;
+         border-top-left-radius: 6px;
+         border-top-right-radius: 6px;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size:cover;
+    }
+     .searchResult-content{
+         width:100%;
+         position: relative;
+         h3{
+             color:#222;
+             font-weight:600;
+             padding:0 0 0px 15px;
+             font-size:16px;
+        }
+         p{
+             color:#222;
+             font-weight:500;
+             font-size:14px;
+             margin:0 0 15px 15px;
+           
+        }
+ 
+    }
 }

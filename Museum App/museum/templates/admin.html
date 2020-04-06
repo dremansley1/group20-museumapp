@@ -5,5 +5,5 @@
 {% endblock %}
 
 {% block main_content %}
-<a href="{{ url_for('logout') }}"><button>Logout</button></a>
+<h3 class="adminWelcome"><i class="fas fa-user-circle"></i>&nbsp; Welcome Back, Admin <a href="{{ url_for('logout') }}"><button class="logoutBtn"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</button></a>
 {% endblock %}

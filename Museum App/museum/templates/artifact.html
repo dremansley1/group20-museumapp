@@ -23,23 +23,14 @@
     <button class="tablinks" onclick="showMap(event, 'floor3')"><i class="fas fa-layer-group"></i>&nbsp; Floor 3</button>
 </section> -->
 
+</div>
+</div>
 
-<section class="floor_nav tab">
-
-<a  class="tablinks" href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
-	by Artist
-</a>
-
-<a   class="tablinks" href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byRoom') }}" class="itemName"> 
-	By Room
-</a>
-
-<a   class="tablinks" href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byDate') }}" class="itemName"> 
-	By Date
-</a>
-
+<section class="floor_nav">
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}"><button><i class="fas fa-layer-group"></i>&nbsp; By Artist</button></a>
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byRoom') }}"><button><i class="fas fa-layer-group"></i>&nbsp; By Room</button></a>
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byDate') }}"><button><i class="fas fa-layer-group"></i>&nbsp; By Date</button></a>
 </section>
-
 
 {%for recomended in recomendedArt %}
 
@@ -63,31 +54,9 @@
 <br><br><br><br><br><br><br><br><br><br>
 <!-- attisty room date?
  -->  
-</div>
-</div>
 
 <form>
 <input type = "button" value="Return to Previous Page" onClick="history.back()">
 </form>
-
-
-<script>
-function showMap(evt, floor) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(floor).style.display = "block";
-  evt.currentTarget.className += " active";
-}      
-document.getElementById("floor1_btn").click();
-</script>
-
-
 
 {% endblock %}

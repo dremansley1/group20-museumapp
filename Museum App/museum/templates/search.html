@@ -1,4 +1,4 @@
-6{% extends 'template.html' %}
+{% extends 'template.html' %}
 
 {% block MuseumName %}
 {{ museum_data.store_name }}
@@ -13,17 +13,15 @@
 <form method="post" class="searchForm">
 
     {{ render_field(form.select) }}
-    <p>
+    
     {{ render_field(form.search) }}
-  
-  <p>
-      <button type="submit"><span class="material-icons size-16">
-search
-          </span></button>
+
+      <button type="submit"><i class="fas fa-search"></i></button>
 </form>
 
 {%for artPiece in artPieces%}
-<a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
+
+<!-- <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
 	<div class="thumbnail">
         <div class="img_container">
 		<img class="thumbnail_img" src="{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
@@ -34,15 +32,16 @@ search
 	    </div>
 	</div>
 
-</a>
-<br>
-<br>
+</a> -->
+
+<a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" target="_system"><section class="searchResult"><section class="img-container" style="background-image:url({{ url_for('static', filename='img/' +  artPiece.picture_path) }})"></section><section class="searchResult-content"><h3>{{artPiece.title}}</h3><p><i class="far fa-calendar-alt"></i>&nbsp; Year {{artPiece.date}}</p></section></section></a>
+
+
 {%endfor%}
 
 <form>
 <input type = "button" value="Return to Previous Page" onClick="history.back()">
 </form>
-
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"

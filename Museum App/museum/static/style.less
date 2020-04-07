@@ -63,12 +63,13 @@ header {
 		float:right;
 		height:@height1;
 		width:40%;
+		display:inline;
 	}
 	&:after {
 		background-color: transparent!important;
 	}
 }
-.header-btn {
+.header-btn, .header-btn-left {
 	box-shadow: @shadow-all;
 	-moz-box-shadow: @shadow-all;
 	-webkit-box-shadow: @shadow-all;
@@ -79,8 +80,11 @@ header {
 	float:right;
 	height:@height2;
 	margin:10px;
-	position: relative;
 	width:30px;
+	display:inline;
+}
+.header-btn-left{
+	float:left;
 }
 .sectionTitle {
 	color:@color1;

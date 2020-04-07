@@ -26,14 +26,17 @@ def search():
         search_string = search.data['search']
         if search.data['search'] != '':
             search_string = '%{0}%'.format(search_string)
-            artPieces = ArtPiece.query.filter(or_(  ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))) 
-
+            if search.data['select'] == 'title':
+                artPieces = ArtPiece.query.filter(or_(ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))) 
+            # elif:
+            #     search.data['select'] == 'artist':
            #### result = ArtPiece.query.join(Artist).filter(Artist.artist_name.like(search_string) ).all()
 
           #  re=ArtPiece.query.outerjoin(Artist, ArtPiece.c.artist_id == Artist.c.artist_id)
 
                 ### REmBER TO DO ARTIST!!!!!!!!!!!
-            return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
+            return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form); 
+
     artPieces = ArtPiece.query.all()
     return render_template('search.html', artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 

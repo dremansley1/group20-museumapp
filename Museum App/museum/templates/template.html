@@ -23,10 +23,6 @@
     
 -->
     
-    
-    
-
-    
     <script src="https://kit.fontawesome.com/5ca445b195.js" crossorigin="anonymous"></script>
 
 {% endblock %}
@@ -37,6 +33,9 @@
 	{% block header %}
 <header>
      
+     {% if page_name == "Artifact" %}
+      <button class="header-btn-left" onClick="history.back()"><i class="fas fa-arrow-left"></i></button>
+     {% endif %}
                   <h1>{{page_name}}</h1>
     
 

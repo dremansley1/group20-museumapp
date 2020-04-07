@@ -7,7 +7,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 
 
 class ArtPieceSearchForm(FlaskForm):
-    choices = [('title', 'title')]
+    choices = [('title', 'Title'),('artist','Artist')]
     select = SelectField('', choices=choices)
     search = StringField('')
     submit = SubmitField('Seaerch')

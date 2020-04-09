@@ -26,17 +26,14 @@ def search():
         search_string = search.data['search']
         if search.data['search'] != '':
             search_string = '%{0}%'.format(search_string)
-            if search.data['select'] == 'title':
-                artPieces = ArtPiece.query.filter(or_(ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))) 
-            # elif:
-            #     search.data['select'] == 'artist':
+            artPieces = ArtPiece.query.filter(or_(  ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))) 
+
            #### result = ArtPiece.query.join(Artist).filter(Artist.artist_name.like(search_string) ).all()
 
           #  re=ArtPiece.query.outerjoin(Artist, ArtPiece.c.artist_id == Artist.c.artist_id)
 
                 ### REmBER TO DO ARTIST!!!!!!!!!!!
-            return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form); 
-
+            return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
     artPieces = ArtPiece.query.all()
     return render_template('search.html', artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 
@@ -51,16 +48,15 @@ def artifact(artwork_id, sortType = "byArtist"):
     artist = Artist.query.get_or_404(artist_ida)
 
     if(sortType == "byArtist" ):
-        recomendedArt = ArtPiece.query.filter_by(artist_id= artist_ida).limit(4)
+        recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
 
-        #need to change to closed date
+        ##need to change to closed date
     elif(sortType == "byDate"):
-        recomendedArt = ArtPiece.query.filter_by(date = artPiece.date).limit(4) 
-
+        recomendedArt = ArtPiece.query.filter_by(date = artPiece.date ).limit(4) 
     elif(sortType == "byRoom"):
         recomendedArt = ArtPiece.query.filter_by(room_id =artPiece.room_id).limit(4)
     else:
-        print("not found sort type in route/artifact.py  type")
+        print("not found sort type in route/artifct.py  type")
 #recomendedArt = recomendedArt.query.filter_by(artwork_id !=artist_ida)
 
 
@@ -95,6 +91,18 @@ def login():
         else:
             return redirect(url_for('login'))
     return render_template('login.html', page_name='Admin Login', museum_data = museum_info, form=form)
+
+#@app.route("/register", methods=['GET', 'POST'])
+#def register():
+#    form = RegistrationForm()
+#    if form.validate_on_submit():
+#        user_login = user(username=form.username.data,
+#        email=form.email.data, password=form.password.data)
+#        db.session.add(user_login)
+#        db.session.commit()
+#        flash("You have been successfully registered") 
+#        return redirect(url_for('login'))
+#    return render_template('register.html', page_name='Create an Account', museum_data = museum_info, form=form)
 
 @app.route("/logout")
 def logout():

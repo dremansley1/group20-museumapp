@@ -9,11 +9,47 @@
 
 
 <div class="art_card">
-  <img class = "" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
+
+
+  <img id = "arifact_img" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
+
+
+ <video id = "artifact_vidio" controls poster="/images/w3html5.gif" style='display:none;' >
+
+
+
+
+
+  <source src="{{ url_for('static', filename='video/' +  'defult.mp4' ) }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video> 
+
+<section class="floor_nav">
+
+
+	<button
+ onclick="document.getElementById('arifact_img').style='display:block;'  
+		  document.getElementById('artifact_vidio').style='display:none;' ">
+Image
+</button>
+
+	<button
+ onclick="document.getElementById('arifact_img').style='display:none;'  
+		  document.getElementById('artifact_vidio').style='display:block;' ">
+ Video</button>
+
+
+</section>
+
+
   <div class="art_text">
     <h3>{{ artPiece.title }}</h3><br>
     <h5>{{artist.artist_name}}</h5>
 	<p>{{ artPiece.description }}</p>
+
+<form>
+<input type = "button" value="Back to Room" onClick="history.back()">
+</form>
 	{{sortType}}
 <!-- 
 <section class="floor_nav tab">
@@ -22,19 +58,20 @@
     <button class="tablinks" onclick="showMap(event, 'floor2')"><i class="fas fa-layer-group"></i>&nbsp; Floor 2</button>
     <button class="tablinks" onclick="showMap(event, 'floor3')"><i class="fas fa-layer-group"></i>&nbsp; Floor 3</button>
 </section> -->
+	</div>
 
 </div>
-</div>
+
 
 <section class="floor_nav">
-    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}"><button><i class="fas fa-layer-group"></i>&nbsp; By Artist</button></a>
-    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byRoom') }}"><button><i class="fas fa-layer-group"></i>&nbsp; By Room</button></a>
-    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byDate') }}"><button><i class="fas fa-layer-group"></i>&nbsp; By Date</button></a>
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}"><button></i>&nbsp; By Artist</button></a>
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byRoom') }}"><button></i>&nbsp; By Room</button></a>
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byDate') }}"><button></i>&nbsp; By Date</button></a>
 </section>
 
 {%for recomended in recomendedArt %}
 
-<a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
+<!-- <a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
 	<div class="thumbnail">
         <div class="img_container">
 		<img class="thumbnail_img" src="{{ url_for('static', filename='img/' +  recomended.picture_path) }}">
@@ -45,18 +82,37 @@
 	    </div>
 	</div>
 
+</a> -->
+
+
+<a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byArtist') }}" >
+  <section class="searchResult">
+    <section class="img-container" style="background-image:url({{ url_for('static', filename='img/' +  recomended.picture_path) }})"></section>
+    <section class="searchResult-content">
+      <h3>{{recomended.title}}</h3>
+      <p>
+        <i class="far fa-calendar-alt"></i>&nbsp; Year {{recomended.date}} {{recomended.artist}}
+      </p>
+    </section>
+  </section>
 </a>
-<br>
+
 
 {%endfor%}
 
 
-<br><br><br><br><br><br><br><br><br><br>
+
+<div>
+<br>
+<br>
+<br>
+<br>
+<br></div>
 <!-- attisty room date?
  -->  
 
-<form>
-<input type = "button" value="Return to Previous Page" onClick="history.back()">
-</form>
+
+
+
 
 {% endblock %}

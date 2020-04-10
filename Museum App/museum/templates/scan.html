@@ -14,14 +14,12 @@
 <input type="text" value="scan" id="active_page" hidden>
 <form method="post" class="scanform">
   
-     <p class="note"><i class="fas fa-qrcode"></i>&nbsp; Scan a QR code using the live scanner above, or upload a QR code</p>
+    <input name="scan" type="text" placeholder="QR Code" class="qrcode-text" readonly>
     <label>
         <input type="file" accept="image/*" capture="environment" class="capture-button" onclick="return showQRIntro();" onchange="openQRCamera(this);"  tabindex="-1">
     </label>
-
-  <input name="scan" type="text" placeholder="QR Code" class="qrcode-text" readonly>
-  
-   
+     <p class="note"><i class="fas fa-qrcode"></i>&nbsp; Scan a QR code using the live scanner above, or upload a QR code</p>
+ 
   <input type="submit" value="Find Artifact">
 
   <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>

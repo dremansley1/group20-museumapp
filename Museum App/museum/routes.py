@@ -73,10 +73,17 @@ def room(room_id):
 @app.route("/scan", methods=['GET', 'POST'])
 def scan():
     if request.method == 'POST':
-        qr_code = request.form['scan']
-        if qr_code != '':
-            result = ArtPiece.query.get_or_404(qr_code)
-            return render_template('artifact.html', artPiece = result, museum_data = museum_info, page_name = "Artifact");        
+        artwork_id = request.form['scan']
+        if artwork_id != '':
+            artPiece = ArtPiece.query.get_or_404(artwork_id)
+
+            artist_ida = artPiece.artist_id
+            artist = Artist.query.get_or_404(artist_ida)
+            recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
+
+            #return render_template('artifact.html', artPiece = result, museum_data = museum_info, page_name = "Artifact");
+            return render_template('artifact.html', artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
+        
     return render_template('scan.html', museum_data = museum_info, page_name = "Scan", active_page="sacn");
 
 @app.route("/login", methods=['GET', 'POST'])

@@ -9,34 +9,23 @@
 
 
 <div class="art_card">
-
-
   <img id = "arifact_img" src = "{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
-
-
  <video id = "artifact_vidio" controls poster="/images/w3html5.gif" style='display:none;' >
-
-
-
-
-
   <source src="{{ url_for('static', filename='video/' +  'defult.mp4' ) }}" type="video/mp4">
   Your browser does not support the video tag.
 </video> 
-
 <section class="floor_nav">
-
-
 	<button
  onclick="document.getElementById('arifact_img').style='display:block;'  
 		  document.getElementById('artifact_vidio').style='display:none;' ">
 Image
 </button>
 
-	<button
+<button
  onclick="document.getElementById('arifact_img').style='display:none;'  
 		  document.getElementById('artifact_vidio').style='display:block;' ">
- Video</button>
+ Video
+</button>
 
 
 </section>
@@ -47,9 +36,10 @@ Image
     <h5>{{artist.artist_name}}</h5>
 	<p>{{ artPiece.description }}</p>
 
-<form>
-<input type = "button" value="Back to Room" onClick="history.back()">
-</form>
+  <a href="{{ url_for('room', room_id = artPiece.room_id) }}" >
+    Back to Room
+  </a>
+
 	{{sortType}}
 <!-- 
 <section class="floor_nav tab">
@@ -71,28 +61,16 @@ Image
 
 {%for recomended in recomendedArt %}
 
-<!-- <a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
-	<div class="thumbnail">
-        <div class="img_container">
-		<img class="thumbnail_img" src="{{ url_for('static', filename='img/' +  recomended.picture_path) }}">
-        </div>
-		<div class="container">
-		   	<p>{{recomended.title}} <br>
-		   	Year: {{recomended.date}}</p> <br>
-	    </div>
-	</div>
-
-</a> -->
-
 
 <a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byArtist') }}" >
   <section class="searchResult">
     <section class="img-container" style="background-image:url({{ url_for('static', filename='img/' +  recomended.picture_path) }})"></section>
-    <section class="searchResult-content">
-      <h3>{{recomended.title}}</h3>
-      <p>
-        <i class="far fa-calendar-alt"></i>&nbsp; Year {{recomended.date}} {{recomended.artist}}
-      </p>
+      <section class="searchResult-content">
+        <h3>{{recomended.title}}</h3>
+        <p>
+          <i class="far fa-calendar-alt"></i>&nbsp; Year {{recomended.date}} {{recomended.artist}}
+        </p>
+      </section>
     </section>
   </section>
 </a>

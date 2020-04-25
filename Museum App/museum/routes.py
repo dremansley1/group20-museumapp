@@ -43,24 +43,21 @@ def search():
 @app.route("/artifact/<int:artwork_id>/<string:sortType>", methods=['GET', 'POST'])
 def artifact(artwork_id, sortType = "byArtist"):
     artPiece = ArtPiece.query.get_or_404(artwork_id)
-
     artist_ida = artPiece.artist_id
     artist = Artist.query.get_or_404(artist_ida)
+    session["last_artwork_visited"] = artPiece.artwork_id
+    session["recommendation_type"] = sortType
+    
 
     if(sortType == "byArtist" ):
         recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
-
-        ##need to change to closed date
     elif(sortType == "byDate"):
         recomendedArt = ArtPiece.query.filter_by(date = artPiece.date ).limit(4) 
     elif(sortType == "byRoom"):
         recomendedArt = ArtPiece.query.filter_by(room_id =artPiece.room_id).limit(4)
     else:
         print("not found sort type in route/artifct.py  type")
-#recomendedArt = recomendedArt.query.filter_by(artwork_id !=artist_ida)
 
-
-  #  artPeices = ArtPiece.query.get_or_404(artwork_id)   
     return render_template('artifact.html', artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
 
 @app.route("/room/<int:room_id>", methods=['GET', 'POST'])
@@ -68,7 +65,11 @@ def room(room_id):
     room = Room.query.get_or_404(room_id)
     artpieces = ArtPiece.query.filter_by(room_id=room_id)
     page_name = "Room " + str(room.room_id)
-    return render_template('room.html', museum_data = museum_info, page_name = page_name, room = room, artpieces = artpieces);
+    if "last_artwork_visited" in session:
+        last_artwork_visited = session["last_artwork_visited"]
+    else:
+        last_artwork_visited = -1
+    return render_template('room.html', museum_data = museum_info, page_name = page_name, room = room, artpieces = artpieces, last_artwork_visited=last_artwork_visited);
 
 @app.route("/scan", methods=['GET', 'POST'])
 def scan():
@@ -99,17 +100,7 @@ def login():
             return redirect(url_for('login'))
     return render_template('login.html', page_name='Admin Login', museum_data = museum_info, form=form)
 
-#@app.route("/register", methods=['GET', 'POST'])
-#def register():
-#    form = RegistrationForm()
-#    if form.validate_on_submit():
-#        user_login = user(username=form.username.data,
-#        email=form.email.data, password=form.password.data)
-#        db.session.add(user_login)
-#        db.session.commit()
-#        flash("You have been successfully registered") 
-#        return redirect(url_for('login'))
-#    return render_template('register.html', page_name='Create an Account', museum_data = museum_info, form=form)
+
 
 @app.route("/logout")
 def logout():

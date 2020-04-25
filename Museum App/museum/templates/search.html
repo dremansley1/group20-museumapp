@@ -21,18 +21,7 @@
 
 {%for artPiece in artPieces%}
 
-<!-- <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
-	<div class="thumbnail">
-        <div class="img_container">
-		<img class="thumbnail_img" src="{{ url_for('static', filename='img/' +  artPiece.picture_path) }}">
-        </div>
-		<div class="container">
-		   	<p>{{artPiece.title}} <br>
-		   	Year: {{artPiece.date}}</p> <br>
-	    </div>
-	</div>
 
-</a> -->
 
 <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" >
   <section class="searchResult">

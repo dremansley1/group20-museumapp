@@ -35,7 +35,8 @@ def search():
                 ### REmBER TO DO ARTIST!!!!!!!!!!!
             return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
     artPieces = ArtPiece.query.all()
-    return render_template('search.html', artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
+    last_artwork_visited = session["last_artwork_visited"]
+    return render_template('search.html',last_artwork_visited =last_artwork_visited , artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 
 ##################################
 
@@ -45,9 +46,10 @@ def artifact(artwork_id, sortType = "byArtist"):
     artPiece = ArtPiece.query.get_or_404(artwork_id)
     artist_ida = artPiece.artist_id
     artist = Artist.query.get_or_404(artist_ida)
-    session["last_artwork_visited"] = artPiece.artwork_id
-    session["recommendation_type"] = sortType
-    
+
+    last_artwork_visited = session["last_artwork_visited"]
+
+    session["last_artwork_visited"] = artPiece.artwork_id    
 
     if(sortType == "byArtist" ):
         recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
@@ -58,7 +60,7 @@ def artifact(artwork_id, sortType = "byArtist"):
     else:
         print("not found sort type in route/artifct.py  type")
 
-    return render_template('artifact.html', artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
+    return render_template('artifact.html', last_artwork_visited = last_artwork_visited,artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
 
 @app.route("/room/<int:room_id>", methods=['GET', 'POST'])
 def room(room_id):

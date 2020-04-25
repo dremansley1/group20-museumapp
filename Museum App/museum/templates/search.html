@@ -20,25 +20,22 @@
 </form>
 
 {%for artPiece in artPieces%}
-
-
-
-<a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" >
-  <section class="searchResult">
+  <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byRoom') }}" >
+    {%if artPiece.artwork_id == last_artwork_visited%}
+    <section class="searchResult" style = "     background-color:pink;">
+    {%else%}
+    <section class="searchResult" >
+    {%endif%}
     <section class="img-container" style="background-image:url({{ url_for('static', filename='img/' +  artPiece.picture_path) }})"></section>
-    <section class="searchResult-content">
-      <h3>{{artPiece.title}}</h3>
-      <p>
-        <i class="far fa-calendar-alt"></i>&nbsp; Year {{artPiece.date}} {{artPiece.artist}}
-      </p>
+      <section class="searchResult-content"  >
+          <h3>{{artPiece.title}}</h3>
+          <p>
+            <i class="far fa-calendar-alt"></i>&nbsp; Year {{artPiece.date}} {{artPiece.artist}}
+          </p>
+      </section>
     </section>
-  </section>
-</a>
-
-
+  </a>
 {%endfor%}
-
-
 
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"

@@ -6,4 +6,9 @@
 
 {% block main_content %}
 <h3 class="adminWelcome"><i class="fas fa-user-circle"></i>&nbsp; Welcome Back, Admin <a href="{{ url_for('logout') }}"><button class="logoutBtn"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</button></a>
+
+<form>
+<input type = "button" value="Return to Previous Page" onClick="history.back()">
+</form>
+
 {% endblock %}

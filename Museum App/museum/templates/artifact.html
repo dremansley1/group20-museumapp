@@ -14,27 +14,32 @@
   <source src="{{ url_for('static', filename='video/' +  'defult.mp4' ) }}" type="video/mp4">
   Your browser does not support the video tag.
 </video> 
+
 <section class="floor_nav">
-	<button
- onclick="document.getElementById('arifact_img').style='display:block;'  
-		  document.getElementById('artifact_vidio').style='display:none;' ">
-Image
-</button>
+  <button
+   onclick="document.getElementById('arifact_img').style='display:block;'  
+  		  document.getElementById('artifact_vidio').style='display:none;' ">
+  Image
+  </button>
 
-<button
- onclick="document.getElementById('arifact_img').style='display:none;'  
-		  document.getElementById('artifact_vidio').style='display:block;' ">
- Video
-</button>
-
-
+  <button
+   onclick="document.getElementById('arifact_img').style='display:none;'  
+  		  document.getElementById('artifact_vidio').style='display:block;' ">
+   Video
+  </button>
 </section>
 
 
   <div class="art_text">
-    <h3>{{ artPiece.title }}</h3><br>
+    <h3>{{ artPiece.title }}</h3>      <p>{{ artPiece.date }}</p>
+
+
     <h5>{{artist.artist_name}}</h5>
-	<p>{{ artPiece.description }}</p>
+  </a>
+
+  <p>{{ artPiece.description }}</p>
+
+  <h6>{{artist.wiki_link}}</h6>
 
   <a href="{{ url_for('room', room_id = artPiece.room_id) }}" >
     Back to Room

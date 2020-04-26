@@ -35,7 +35,7 @@ class ArtPiece(db.Model):
     location_y = db.Column(db.Integer, nullable = False)
 
     def __repr__(self):
-        return f"ArtPiece('{self.title}', '{self.description}', '{self.date}', '{self.locationX}'), '{self.locationY}')"
+        return f"ArtPiece('{self.title}', '{self.description}', '{self.date}', '{self.location_x}'), '{self.location_y}')"
 
 
 class User(UserMixin, db.Model):

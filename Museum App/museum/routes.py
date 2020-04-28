@@ -30,26 +30,37 @@ def search():
         if search.data['search'] != '':
             search_string = '%{0}%'.format(search_string)
             artPieces = ArtPiece.query.filter(or_(  ArtPiece.title.like(search_string), ArtPiece.description.like(search_string)))
-           # num = ArtPiece.query.filter(or_(  ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))).count()
-            #artists=Artist.query.filter(Artist.name.like(search_string))
             return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
     artPieces = ArtPiece.query.all()
-    last_artwork_visited = session["last_artwork_visited"]
 
-    
+    ########################################################################
+    #DON!!!!!!!!!!!!!!!!1
+
+    if  "last_artwork_visited" in session:
+        last_artwork_visited = session["last_artwork_visited"]
+    else:
+        last_artwork_visited = -1
     return render_template('search.html',last_artwork_visited =last_artwork_visited , artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 
-##################################
-
-
+    ########################################################################
 
 @app.route("/artifact/<int:artwork_id>/<string:sortType>", methods=['GET', 'POST'])
 def artifact(artwork_id, sortType = "byArtist"):
-    artPiece = ArtPiece.query.get_or_404(artwork_id)
 
+
+    artPiece = ArtPiece.query.get_or_404(artwork_id)
     artist_ida = artPiece.artist_id
     artist = Artist.query.get_or_404(artist_ida)
-    last_artwork_visited = session["last_artwork_visited"]
+
+    #############################################################
+    #DON!!!!!!!!!!!!!!!!1
+    if  "last_artwork_visited" in session:
+        last_artwork = session["last_artwork_visited"]
+    else:
+        last_artwork = -1
+
+  #  last_artwork_visited = session["last_artwork_visited"]
+    ###############################################################
     session["last_artwork_visited"] = artPiece.artwork_id    
     if(sortType == "byArtist" ):
         recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
@@ -59,30 +70,37 @@ def artifact(artwork_id, sortType = "byArtist"):
         recomendedArt = ArtPiece.query.filter_by(room_id = artPiece.room_id).limit(4)
     else:
         print(sortType +"_not found sort type in route/artifct.py  type")
-
-
-
-    
-    return render_template('artifact.html',sortType = sortType ,last_artwork_visited = last_artwork_visited,artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
+    return render_template('artifact.html',sortType = sortType ,last_artwork_visited = last_artwork,artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
 
 def nClosest(n,artPiece, artPieces ):
     """
-    "computes the didstance of all artpeices to artpiece, and retuens n of tthe lowest value
+    This Algorithem computes the distance of all artpeices to artpiece, 
+    and retuens nof the lowest pythagrion distance 
     """
+    #Get coordinates of the artPiece
     x = artPiece.location_x
     y = artPiece.location_y
-    our_room = artPiece.room_id
+    #Initalize a dictionay proximityValues
     proximityValues = {}
+    #get a contender for closest to artPiece
     for contender in artPieces:
-        if  contender.room_id == our_room and  contender != artPiece :
+        #as long as it isnt artPiece but is in the same room
+        if  contender.room_id == artPiece.room_id and  contender != artPiece:
+            #Get coordinates of the contender
             con_x =contender.location_x
             con_y =contender.location_y
+            #Calculate distance between artPiece and contender 
+            # D = sqrt((X1 - X2)^2 + (Y1 - Y2)^2)
             distance =  math.sqrt(( x - con_x )**2 + (y - con_y)**2)  
-            proximityValues[contender]=distance
+            #append contender as key ans distance as corrisponding value
+            proximityValues[contender] = distance
+    #sort proximityValues by distance
     sortedDic = sorted(proximityValues.items(), key=lambda x: x[1])
+    #add Contenders to a list, li
     li =[]
     for a in sortedDic:
         li.append(a[0]) 
+    #return list of contenders of lenth n 
     return li[0:n-1]
 
 
@@ -106,14 +124,10 @@ def scan():
         artwork_id = request.form['scan']
         if artwork_id != '':
             artPiece = ArtPiece.query.get_or_404(artwork_id)
-
             artist_ida = artPiece.artist_id
             artist = Artist.query.get_or_404(artist_ida)
             recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
-
-            #return render_template('artifact.html', artPiece = result, museum_data = museum_info, page_name = "Artifact");
-            return render_template('artifact.html', artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
-        
+            return render_template('artifact.html', artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");    
     return render_template('scan.html', museum_data = museum_info, page_name = "Scan", active_page="sacn");
 
 @app.route("/login", methods=['GET', 'POST'])

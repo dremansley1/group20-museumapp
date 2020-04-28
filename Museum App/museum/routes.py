@@ -29,23 +29,18 @@ def search():
         search_string = search.data['search']
         if search.data['search'] != '':
             search_string = '%{0}%'.format(search_string)
-            artPieces = ArtPiece.query.filter(or_(  ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))) 
-
-           #### result = ArtPiece.query.join(Artist).filter(Artist.artist_name.like(search_string) ).all()
-
-          #  re=ArtPiece.query.outerjoin(Artist, ArtPiece.c.artist_id == Artist.c.artist_id)
-
-                ### REmBER TO DO ARTIST!!!!!!!!!!!
+            artPieces = ArtPiece.query.filter(or_(  ArtPiece.title.like(search_string), ArtPiece.description.like(search_string)))
+           # num = ArtPiece.query.filter(or_(  ArtPiece.title.like(search_string), ArtPiece.description.like(search_string))).count()
+            #artists=Artist.query.filter(Artist.name.like(search_string))
             return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
     artPieces = ArtPiece.query.all()
     last_artwork_visited = session["last_artwork_visited"]
-    if not artPieces:
-        flash('No results found!')
-        return redirect('/')
 
+    
     return render_template('search.html',last_artwork_visited =last_artwork_visited , artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 
 ##################################
+
 
 
 @app.route("/artifact/<int:artwork_id>/<string:sortType>", methods=['GET', 'POST'])
@@ -54,28 +49,21 @@ def artifact(artwork_id, sortType = "byArtist"):
 
     artist_ida = artPiece.artist_id
     artist = Artist.query.get_or_404(artist_ida)
-
-    #print(type(artPieces))
-    #closestLi = nClosest(2, artPiece,ArtPiece.query.all() )
-
     last_artwork_visited = session["last_artwork_visited"]
-
     session["last_artwork_visited"] = artPiece.artwork_id    
-
     if(sortType == "byArtist" ):
         recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
     elif(sortType == "byClosest"):
         recomendedArt = nClosest(3, artPiece, ArtPiece.query.all())# ArtPiece.query.filter_by(  artwork_id = one    ).limit(4) 
-
-        #recomendedArt = ArtPiece.query.filter_by(  artwork_id = 1    ).limit(4) 
     elif(sortType == "byRoom"):
         recomendedArt = ArtPiece.query.filter_by(room_id = artPiece.room_id).limit(4)
     else:
-        print("not found sort type in route/artifct.py  type")
+        print(sortType +"_not found sort type in route/artifct.py  type")
 
 
 
-    return render_template('artifact.html',last_artwork_visited = last_artwork_visited,artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
+    
+    return render_template('artifact.html',sortType = sortType ,last_artwork_visited = last_artwork_visited,artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
 
 def nClosest(n,artPiece, artPieces ):
     """
@@ -91,16 +79,10 @@ def nClosest(n,artPiece, artPieces ):
             con_y =contender.location_y
             distance =  math.sqrt(( x - con_x )**2 + (y - con_y)**2)  
             proximityValues[contender]=distance
-
     sortedDic = sorted(proximityValues.items(), key=lambda x: x[1])
-   
     li =[]
     for a in sortedDic:
-       # print(type(a))
         li.append(a[0]) 
-
-    #print(li)
-    #li.remove(artPiece)
     return li[0:n-1]
 
 
@@ -117,8 +99,8 @@ def room(room_id):
     else:
         last_artwork_visited = -1
     return render_template('room.html', museum_data = museum_info, page_name = page_name, room = room, artpieces = artpieces, last_artwork_visited=last_artwork_visited);
-
 @app.route("/scan", methods=['GET', 'POST'])
+
 def scan():
     if request.method == 'POST':
         artwork_id = request.form['scan']

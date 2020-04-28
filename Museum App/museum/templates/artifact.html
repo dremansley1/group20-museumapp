@@ -30,17 +30,14 @@
 </section>
 
 
+
   <div class="art_text">
-    <h3>{{ artPiece.title }}</h3>      <p>{{ artPiece.date }}</p>
-
-
+    <h3>{{ artPiece.title }}</h3>
+    <p>{{ artPiece.date }}</p>
+    <a href= {{artist.wiki_link}}>
     <h5>{{artist.artist_name}}</h5>
-  </a>
-
+    </a>
   <p>{{ artPiece.description }}</p>
-
-  <h6>{{artist.wiki_link}}</h6>
-
   <a href="{{ url_for('room', room_id = artPiece.room_id) }}" >
     Back to Room
   </a>
@@ -59,14 +56,13 @@
 
 
 <section class="floor_nav">
-    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}"><button ></i>&nbsp; By Artist</button></a>
-    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byRoom') }}"><button></i>&nbsp; By Room</button></a>
-    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byClosest') }}"><button></i>&nbsp; By Closest</button></a>
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}"><button id = byArtist ></i>&nbsp; By Artist</button></a>
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byRoom') }}"><button id = byRoom></i>&nbsp; By Room</button></a>
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byClosest') }}"><button id = byClosest></i>&nbsp; By Closest</button></a>
 </section>
 
 
-
-
+<section>
 
 
 
@@ -74,7 +70,7 @@
   {%if recomended != artPiece  %}
     <a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byArtist') }}" >
     {%if recomended.artwork_id== last_artwork_visited%}
-      <section class="searchResult"  style= " background-color:pink;">
+      <section class="searchResult"  style= " background-color:#df5286;">
     {% else %}
       <section class="searchResult" >
     {%endif%}
@@ -91,7 +87,20 @@
   {%endif%}
 {%endfor%}
 
+</section>
 
+
+
+    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
+    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
+    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
+    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
+    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
+
+<script>
+document.getElementById("{{sortType}}").style.color = "blue";
+
+</script>
 
 
 

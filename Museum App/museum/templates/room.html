@@ -23,8 +23,9 @@
 
 	{%if artpiece.artwork_id == last_artwork_visited%}
 		<img src= "{{ url_for('static', filename='img/' + artpiece.picture_path) }}"  alt="" style="  border-style: solid; border-width: thick;
-  border-color: #df5286; height: 35px; width: 35px; left: {{artpiece.location_x+20}}px; top:{{artpiece.location_y+20}}px; position: absolute;"> 
-#
+
+  border-color: #df5286; height: 35px; width: 35px; left: {{artpiece.location_x}}px; top:{{artpiece.location_y}}px; position: absolute;"> 
+		</a>
 	{% else %}
 		<img src= "{{ url_for('static', filename='img/' + artpiece.picture_path) }}"  alt="" style="height: 35px; width: 35px; left: {{artpiece.location_x+20}}px; top:{{artpiece.location_y+20}}px; position: absolute;"> 
 		</a>

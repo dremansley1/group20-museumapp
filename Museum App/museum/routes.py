@@ -39,6 +39,22 @@ def search():
     return render_template('search.html',last_artwork_visited =last_artwork_visited , artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 
 
+@app.route("/scan", methods=['GET', 'POST'])
+def scan():
+    if request.method == 'POST':
+        artwork_id = request.form['scan']
+        if artwork_id != '':
+            artPiece = ArtPiece.query.get_or_404(artwork_id)
+
+            artist_ida = artPiece.artist_id
+            artist = Artist.query.get_or_404(artist_ida)
+            recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
+
+            #return render_template('artifact.html', artPiece = result, museum_data = museum_info, page_name = "Artifact");
+            return render_template('artifact.html', artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
+        
+    return render_template('scan.html', museum_data = museum_info, page_name = "Scan", active_page="scan");
+
 
 @app.route("/artifact/<int:artwork_id>/<string:sortType>", methods=['GET', 'POST'])
 def artifact(artwork_id, sortType ):
@@ -108,22 +124,7 @@ def room(room_id):
     else:
         last_artwork_visited = -1
     return render_template('room.html', museum_data = museum_info, page_name = page_name, room = room, artpieces = artpieces, last_artwork_visited=last_artwork_visited);
-@app.route("/scan", methods=['GET', 'POST'])
 
-def scan():
-    if request.method == 'POST':
-        artwork_id = request.form['scan']
-        if artwork_id != '':
-            artPiece = ArtPiece.query.get_or_404(artwork_id)
-
-            artist_ida = artPiece.artist_id
-            artist = Artist.query.get_or_404(artist_ida)
-            recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
-
-            #return render_template('artifact.html', artPiece = result, museum_data = museum_info, page_name = "Artifact");
-            return render_template('artifact.html', artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
-        
-    return render_template('scan.html', museum_data = museum_info, page_name = "Scan", active_page="sacn");
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():

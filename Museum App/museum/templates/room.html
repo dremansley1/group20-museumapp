@@ -15,13 +15,17 @@
     <div class="relative">
     <img src="{{ url_for('static', filename='map/room.svg')}}" alt="room's layout" class="room">
 {%for artpiece in artpieces%}
+
+
+
+
+		<a href="{{ url_for('artifact', artwork_id = artpiece.artwork_id, sortType = 'byClosest') }}" class="itemName"> 
+
 	{%if artpiece.artwork_id == last_artwork_visited%}
-		<a href="{{ url_for('artifact', artwork_id = artpiece.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
 		<img src= "{{ url_for('static', filename='img/' + artpiece.picture_path) }}"  alt="" style="  border-style: solid; border-width: thick;
   border-color: #df5286; height: 35px; width: 35px; left: {{artpiece.location_x+20}}px; top:{{artpiece.location_y+20}}px; position: absolute;"> 
-		</a>
+#
 	{% else %}
-		<a href="{{ url_for('artifact', artwork_id = artpiece.artwork_id, sortType = 'byArtist') }}" class="itemName"> 
 		<img src= "{{ url_for('static', filename='img/' + artpiece.picture_path) }}"  alt="" style="height: 35px; width: 35px; left: {{artpiece.location_x+20}}px; top:{{artpiece.location_y+20}}px; position: absolute;"> 
 		</a>
 	{% endif %}

@@ -16,15 +16,20 @@
 </video> 
 
 <section class="floor_nav">
-  <button
+  <button id = "getImg"
    onclick="document.getElementById('arifact_img').style='display:block;'  
-  		  document.getElementById('artifact_vidio').style='display:none;' ">
+  		  document.getElementById('artifact_vidio').style='display:none;'   
+          document.getElementById('getVideo').style = 'display:block'
+        document.getElementById('getImg').style = 'display:none' ">
   Image
   </button>
 
   <button
+  id = "getVideo"
    onclick="document.getElementById('arifact_img').style='display:none;'  
-  		  document.getElementById('artifact_vidio').style='display:block;' ">
+  		  document.getElementById('artifact_vidio').style='display:block;' 
+        document.getElementById('getVideo').style = 'display:none'
+        document.getElementById('getImg').style = 'display:block'">
    Video
   </button>
 </section>
@@ -56,9 +61,11 @@
 
 
 <section class="floor_nav">
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byClosest') }}"><button id = byClosest></i>&nbsp; By Closest</button></a>
     <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}"><button id = byArtist ></i>&nbsp; By Artist</button></a>
     <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byRoom') }}"><button id = byRoom></i>&nbsp; By Room</button></a>
-    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byClosest') }}"><button id = byClosest></i>&nbsp; By Closest</button></a>
+
+  
 </section>
 
 
@@ -68,7 +75,7 @@
 
 {%for recomended in recomendedArt %}
   {%if recomended != artPiece  %}
-    <a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byArtist') }}" >
+    <a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byClosest',last_artwork_visited = artPiece.artwork_id) }}" >
     {%if recomended.artwork_id== last_artwork_visited%}
       <section class="searchResult"  style= " background-color:#df5286;">
     {% else %}
@@ -98,7 +105,11 @@
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
 
 <script>
-document.getElementById("{{sortType}}").style.color = "blue";
+document.getElementById("{{sortType}}").style.background ="#2f3542";
+document.getElementById("{{sortType}}").style.color = "#ffffff";
+
+
+
 
 </script>
 

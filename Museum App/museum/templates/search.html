@@ -20,7 +20,7 @@
 </form>
 
   {%for artPiece in artPieces%}
-    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byArtist') }}" >
+    <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byClosest') }}" >
 
       {%if artPiece.artwork_id == last_artwork_visited%}
         <section class="searchResult" style = "background-color: #df5286">
@@ -43,22 +43,14 @@
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
-
-
-
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
-
-
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
-
-
-
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   
     <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>   

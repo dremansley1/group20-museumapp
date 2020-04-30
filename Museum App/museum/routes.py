@@ -52,7 +52,7 @@ def artifact(artwork_id, sortType ):
         print("not in")
     last_artwork_visited = session["last_artwork_visited"]
     session["last_artwork_visited"] = artwork_id
-
+    
     if(sortType == "byArtist" ):
         recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
     elif(sortType == "byClosest"):

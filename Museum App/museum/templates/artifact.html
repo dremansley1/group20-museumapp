@@ -75,7 +75,7 @@
 
 {%for recomended in recomendedArt %}
   {%if recomended != artPiece  %}
-    <a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byClosest',last_artwork_visited = artPiece.artwork_id) }}" >
+    <a href="{{ url_for('artifact', artwork_id = recomended.artwork_id, sortType = 'byClosest') }}" >
     {%if recomended.artwork_id== last_artwork_visited%}
       <section class="searchResult"  style= " background-color:#df5286;">
     {% else %}

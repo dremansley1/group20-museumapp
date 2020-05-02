@@ -14,6 +14,7 @@ from sqlalchemy import *
 
 @app.route("/", methods=['GET', 'POST'])
 def mainpage():
+   
     return render_template("index.html", museum_data = museum_info, page_name = "Cardiff Museum", active_page="index");
 
 @app.route("/settings", methods=['GET', 'POST'])
@@ -34,8 +35,14 @@ def search():
             #artists=Artist.query.filter(Artist.name.like(search_string))
             return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
     artPieces = ArtPiece.query.all()
+    if "last_artwork_visited" in session:
+        last_artwork_visited = session["last_artwork_visited"]
+    else:
+        last_artwork_visited = -1
 
-    last_artwork_visited = session["last_artwork_visited"]
+    #print(type(artPieces))
+    print(len(artPieces))
+    print("ljfnbosn")
     return render_template('search.html',last_artwork_visited =last_artwork_visited , artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 
 
@@ -123,6 +130,7 @@ def room(room_id):
         last_artwork_visited = session["last_artwork_visited"]
     else:
         last_artwork_visited = -1
+
     return render_template('room.html', museum_data = museum_info, page_name = page_name, room = room, artpieces = artpieces, last_artwork_visited=last_artwork_visited);
 
 

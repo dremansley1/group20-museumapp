@@ -53,8 +53,13 @@ def scan():
             artist = Artist.query.get_or_404(artist_ida)
             recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
 
+            if "last_artwork_visited" in session:
+                last_artwork_visited = session["last_artwork_visited"]
+            else:
+                last_artwork_visited = -1
+
             #return render_template('artifact.html', artPiece = result, museum_data = museum_info, page_name = "Artifact");
-            return render_template('artifact.html', artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
+            return render_template('artifact.html',sortType = sortType ,last_artwork_visited = last_artwork_visited, artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
         
     return render_template('scan.html', museum_data = museum_info, page_name = "Scan", active_page="scan");
 

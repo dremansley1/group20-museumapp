@@ -39,10 +39,6 @@ def search():
         last_artwork_visited = session["last_artwork_visited"]
     else:
         last_artwork_visited = -1
-
-    #print(type(artPieces))
-    print(len(artPieces))
-    print("ljfnbosn")
     return render_template('search.html',last_artwork_visited =last_artwork_visited , artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 
 
@@ -70,12 +66,11 @@ def artifact(artwork_id, sortType ):
     artist = Artist.query.get_or_404(artist_ida)
 
     if "last_artwork_visited" in session:
-        print("In dict")
-    else: 
-        print("not in")
-    last_artwork_visited = session["last_artwork_visited"]
+        last_artwork_visited = session["last_artwork_visited"]
+    else:
+        last_artwork_visited = -1
     session["last_artwork_visited"] = artwork_id
-    
+
     if(sortType == "byArtist" ):
         recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
     elif(sortType == "byClosest"):

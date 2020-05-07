@@ -35,10 +35,9 @@ def search():
             #artists=Artist.query.filter(Artist.name.like(search_string))
             return render_template('search.html', artPieces=artPieces,museum_data = museum_info, page_name = "Search", form=form);        
     artPieces = ArtPiece.query.all()
-    if "last_artwork_visited" in session:
-        last_artwork_visited = session["last_artwork_visited"]
-    else:
-        last_artwork_visited = -1
+   
+    last_artwork_visited = session["last_artwork_visited"]
+  
     return render_template('search.html',last_artwork_visited =last_artwork_visited , artPieces=artPieces, museum_data = museum_info, page_name = "Search", form=form, active_page="search");
 
 
@@ -65,12 +64,20 @@ def artifact(artwork_id, sortType ):
     artist_ida = artPiece.artist_id
     artist = Artist.query.get_or_404(artist_ida)
 
-    if "last_artwork_visited" in session:
-        last_artwork_visited = session["last_artwork_visited"]
-    else:
-        last_artwork_visited = -1
-    session["last_artwork_visited"] = artwork_id
 
+    last_artwork = -1
+    if "last_artwork_visited" in session:
+        
+        if session["last_artwork_visited"] != artwork_id:
+            print(artwork_id,"no up>>>",last_artwork)
+            last_artwork = session["last_artwork_visited"]
+        else:
+            print(artwork_id," up>>>>>>>>",last_artwork)
+
+            session["last_artwork_visited"]=artwork_id
+    
+
+    print("final!  ", last_artwork )
     if(sortType == "byArtist" ):
         recomendedArt = ArtPiece.query.filter_by(   artist_id= artist_ida    ).limit(4)
     elif(sortType == "byClosest"):
@@ -79,7 +86,7 @@ def artifact(artwork_id, sortType ):
         recomendedArt = ArtPiece.query.filter_by(room_id = artPiece.room_id).limit(4)
     else:
         print(sortType +"_not found sort type in route/artifct.py  type")
-    return render_template('artifact.html',sortType = sortType ,last_artwork_visited = last_artwork_visited, artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
+    return render_template('artifact.html',sortType = sortType ,last_artwork_visited = last_artwork, artPiece = artPiece, artist = artist, recomendedArt=recomendedArt, museum_data = museum_info, page_name = "Artifact");
 
 def nClosest(n,artPiece, artPieces ):
     """

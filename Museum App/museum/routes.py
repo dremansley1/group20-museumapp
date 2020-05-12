@@ -68,19 +68,11 @@ def artifact(artwork_id, sortType ):
     artPiece = ArtPiece.query.get_or_404(artwork_id)
     artist_ida = artPiece.artist_id
     artist = Artist.query.get_or_404(artist_ida)
-
-
     last_artwork = -1
-    if "last_artwork_visited" in session:
-        
-        if session["last_artwork_visited"] != artwork_id:
-            print(artwork_id,"no up>>>",last_artwork)
-            last_artwork = session["last_artwork_visited"]
-        else:
-            print(artwork_id," up>>>>>>>>",last_artwork)
+    if "last_artwork_visited" in session :
+        last_artwork =  session["last_artwork_visited"]
 
-            session["last_artwork_visited"]=artwork_id
-    
+    session["last_artwork_visited"] = artwork_id
 
     print("final!  ", last_artwork )
     if(sortType == "byArtist" ):

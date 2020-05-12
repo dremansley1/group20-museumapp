@@ -19,6 +19,7 @@
       <button type="submit"><i class="fas fa-search"></i></button>
 </form>
 
+
   {%for artPiece in artPieces%}
     <a href="{{ url_for('artifact', artwork_id = artPiece.artwork_id, sortType = 'byClosest') }}" >
 
